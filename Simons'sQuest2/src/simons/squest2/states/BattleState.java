@@ -6,6 +6,8 @@
 package simons.squest2.states;
 
 import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -22,7 +24,7 @@ public class BattleState extends State{
     public boolean myturn = true;
     final Image battlebackground = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
     final Image simon = new Image(new File("C:/res/simon.png").toURI().toString());
-    
+    List<String> log = new LinkedList<>();
     
     public BattleState(String name, Enemy e) {
         super(name);
@@ -35,12 +37,13 @@ public class BattleState extends State{
         int y = GlobalInfo.yres;
         gc.drawImage(battlebackground, 0, 0, x, y);
         gc.drawImage(simon, 0,0,x/4,y-(y/3*2));
-        //gc.drawImage(e.image, x/3*2, y/3*2, x, y);\
+        gc.drawImage(e.image, 0,0,x,y);
 
     }
 
     @Override
     public void update() {
+        log.add(e.attack());
         
     }
     

@@ -24,6 +24,8 @@ public class GameVariables {
     
     public static int evasion;
     
+    public static int accuracy;
+    
     public static int x = 0,y= 0;
     
 }

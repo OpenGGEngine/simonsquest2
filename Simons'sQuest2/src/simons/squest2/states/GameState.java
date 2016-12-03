@@ -32,8 +32,8 @@ public class GameState extends State {
     @Override
     public void render(GraphicsContext gc) {
         
-        int xmax = (tilesize * w.map.length) - GlobalInfo.xres;
-        int ymax = (tilesize * w.map.length) - GlobalInfo.yres;
+        int xmax = (tilesize * w.map.length) - GlobalInfo.xres-5;
+        int ymax = (tilesize * w.map.length) - GlobalInfo.yres-5;
         
         if(GameVariables.x > xmax) GameVariables.x = xmax;
         if(GameVariables.y > ymax) GameVariables.y = ymax;

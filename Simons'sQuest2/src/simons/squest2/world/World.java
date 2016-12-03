@@ -9,6 +9,7 @@ package simons.squest2.world;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import simons.squest2.GameVariables;
 
 /**
  *
@@ -34,7 +35,7 @@ public class World {
             }
         }
         
-        
+        int xr = (int)(Math.random() * WORLDSIZE);
         
         for(Tile[] x : map){
             for(Tile y : x){
@@ -42,6 +43,8 @@ public class World {
             }
             System.out.println("");
         }
+        
+        
         
         System.out.println("Generator finished");
     }
