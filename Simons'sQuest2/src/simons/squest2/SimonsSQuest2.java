@@ -46,7 +46,12 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        Item.add("Airhorn");
+        Item.add("Airhorn");
+        Item.add("Airhorn");
+        Item.add("Airhorn");Item.add("Airhorn");
+        
+        
         primaryStage.initStyle(StageStyle.DECORATED);
 
         Group root = new Group();
@@ -67,7 +72,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         
         s.addState(bs);
         
-        Enemy e = new Enemy(1, 1, "Donald Trump", new Image(new File("C:/res/clinton.jpg").toURI().toString()), 125);
+        Enemy e = new Enemy(1, 1, "Donald Trump", new Image(new File("C:/res/trump.png").toURI().toString()), 125);
             Attack[] attacks = new Attack[4];
             attacks[0] = new Attack("Twitter War", 20, false, 0.6);//low prob
             attacks[1] = new Attack("Lie", 15, false, 0.8);
@@ -76,7 +81,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             e.setAttacks(attacks);
         bs.setEnemy(e);
         s.setState("BattleState");
-        s.setState("GameState");
+        
+        //s.setState("GameState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
@@ -89,24 +95,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         
         GlobalInfo.xres = screenwidth;
         GlobalInfo.yres = screenheight;
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
-        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
-        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+       
         
     }
     public void loop(GraphicsContext gc){
@@ -146,6 +135,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     s.setState("MenuState");
                 }else if(s.currentState instanceof MenuState){
                     s.setState("GameState");
+                }
+                else if(s.currentState instanceof BattleState){
+                    BattleState.selected = true;
                 }
                 
         }

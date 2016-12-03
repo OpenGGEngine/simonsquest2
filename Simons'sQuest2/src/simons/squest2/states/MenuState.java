@@ -55,12 +55,12 @@ public class MenuState extends State {
         
         
         int xc = 0, yc = 0;
-         gc.drawImage(pointeri, 10 + (pointer % 4) * 250, 320 + (pointer / 4) * 60);
-        for (Item i : GameVariables.inventory) {
+         gc.drawImage(pointeri, 30 + (pointer % 3) * 280, 320 + (pointer / 3) * 60);
+        for (Item i : Item.items) {
             
-                gc.fillText(i.name + ": " + i.quantity , 50 + (xc % 4) * 230, 340 + (yc * 60));
+                gc.fillText(i.name  , 60 + (xc % 3) * 280, 340 + (yc * 60));
                 xc++;
-                if ((xc % 4 == 0)) {
+                if ((xc % 3 == 0)) {
                     yc++;
                 }
             
@@ -69,10 +69,10 @@ public class MenuState extends State {
 
     @Override
     public void update() {
-        if (pointer > GameVariables.inventory.size() - 1) {
+        if (pointer > Item.items.size() - 1) {
             pointer = 0;
         } else if (pointer < 0) {
-            pointer = GameVariables.inventory.size() - 1;
+            pointer = Item.items.size() - 1;
         }
         bar.setValue(GameVariables.playerhealth);
         wearbar.setMax(GameVariables.inventory.get(pointer).wearmax);

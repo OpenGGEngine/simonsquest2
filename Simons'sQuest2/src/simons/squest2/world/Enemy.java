@@ -17,6 +17,7 @@ public class Enemy extends Feature{
     String enemyType;
     public Image image;
     public int health;
+    public int maxhealth;
     String drop;
     boolean alive = true;
     Attack[] attacks = new Attack[4];
@@ -27,6 +28,7 @@ public class Enemy extends Feature{
         this.enemyType = name;
         this.image = image;
         this.health = health;
+        this.maxhealth = health;
     }
     
     public void setAttacks(Attack[] a){
@@ -52,7 +54,7 @@ public class Enemy extends Feature{
         }
         
         if(a.heal){
-            health += a.damage;
+            health = (int)Math.min((health + a.damage), maxhealth);
             return (enemyType + " used " + a.name + " to heal " + a.damage + " health points!");
         }
         if(Math.random() < a.chanceToHit){

@@ -38,7 +38,9 @@ public class BattleState extends State{
     Bar bar = new Bar(Color.GREEN, 100, 100, 240, 570, 650, 20);
    // Bar wearbar = new Bar(Color.AQUA, 100, 100, 315, 520, 650, 20);
     Bar enemybar = new Bar(Color.SALMON, 100, 100, 300, 610, 630, 20);
-    
+    boolean once = true;
+    public static boolean selected = false;
+    String s =" default";
     public BattleState(String name) {
         super(name);
     }
@@ -56,15 +58,18 @@ public class BattleState extends State{
         gc.setFill(Color.SKYBLUE);
         gc.fillRect(0, y-400, x, 400);
         gc.setFill(Color.BLACK);
-        
-        if(myturn){
-            gc.fillText("Health " + GameVariables.playerhealth + "/" + GameVariables.playermaxhealth, 20, y-360);
+        gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 25));
+        gc.fillText("Health " + GameVariables.playerhealth + "/" + GameVariables.playermaxhealth, 20, y-360);
             gc.fillText("Enemy Health " + e.health + "/" + enemybar.max, 20, y-320);
+           
+        if(myturn){
+            
             gc.fillRect(0, y-300, 1000,2 );
             gc.fillRect(1000, y-400, 2,400 );
-            gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 25));
+            
                 int xc = 0, yc = 0;
-                for (Item i : GameVariables.inventory) {
+                for (Item i : Item.items) {
+                    System.out.println("sd");
                     gc.fillText(i.name, 40 + (xc % 4) * 250, 690 + (yc * 60));
                     xc++;
                     if ((xc % 4 == 0)) {
@@ -72,20 +77,42 @@ public class BattleState extends State{
                     }
                 }
                 gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
+                if(selected){
+                    myturn = false;
+                    e.damage(Item.items.get(indexpointer).attackpower);
+                    selected = false;
+                }
                 //gc.drawImage(GameState.arrow, 40 + (indexpointer % 4) * 250, 700 + (indexpointer / 4) * 60);
                 //gc.fillText("Weapon Wear: " + items.get(indexpointer).wear + "/" + items.get(indexpointer).maxwear, 40, 670);
                 //wearbar.render(gc);
+        }else{
+            gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 45));
+            
+         gc.fillRect(0, y-300, 1300,2 ); 
+            if(once){
+                s = e.attack();
+                once = false;
+            }else{
+                gc.fillText(s, 30, 800);
+                if(selected){
+                    selected = false;
+                    myturn = true;
+                    
+                }
+            }
+            
         }
+        
         bar.render(gc);
         enemybar.render(gc);
     }
 
     @Override
     public void update() {
-        if (indexpointer > GameVariables.inventory.size() - 1) {
+        if (indexpointer > Item.items.size() - 1) {
             indexpointer = 0;
         } else if (indexpointer < 0) {
-            indexpointer = GameVariables.inventory.size() - 1;
+            indexpointer = Item.items.size() - 1;
         }
         //log.add(e.attack());
         bar.setValue(GameVariables.playerhealth);

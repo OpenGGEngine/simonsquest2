@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,6 +59,15 @@ public class Item implements Cloneable{
         if (i == null)
             throw new IllegalArgumentException(item + " is not valid item name");
         items.add(i);
+    }
+    
+    public static int getQuantity(String item) {
+        int quantity = 0;
+        for(Item i: items) {
+            if (i.name.equals(item))
+                quantity++;
+        }
+        return quantity;
     }
     
     public int use(){
