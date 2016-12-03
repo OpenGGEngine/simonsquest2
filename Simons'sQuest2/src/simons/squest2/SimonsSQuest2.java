@@ -22,7 +22,7 @@ import simons.squest2.states.StateMachine;
  */
 public class SimonsSQuest2 extends Application{
     
-    public static final int screenwidth = 1280, screenheight = 720;
+    public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
     final GraphicsContext gc = screen.getGraphicsContext2D();
     
@@ -49,7 +49,7 @@ public class SimonsSQuest2 extends Application{
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                gc.clearRect(0, 0, screenwidth, 900);
+                gc.clearRect(0, 0, screenwidth, screenheight);
             }
         }.start();
         
