@@ -32,8 +32,8 @@ public class GameState extends State {
     @Override
     public void render(GraphicsContext gc) {
         
-        int xmax = (tilesize * w.map.length) - cameraheight;
-        int ymax = (tilesize * w.map.length) - camerawidth;
+        int xmax = (tilesize * w.map.length) - GlobalInfo.xres;
+        int ymax = (tilesize * w.map.length) - GlobalInfo.yres;
         
         if(GameVariables.x > xmax) GameVariables.x = xmax;
         if(GameVariables.y > ymax) GameVariables.y = ymax;
@@ -55,9 +55,9 @@ public class GameState extends State {
         int offsetY = -y + startRow * 32;
         */
         int startCol = xa / tilesize;
-        int endCol = startCol + (camerawidth / (tilesize-1));
+        int endCol = startCol + (GlobalInfo.xres / (tilesize-1));
         int startRow = ya / tilesize;
-        int endRow = startRow + (cameraheight / tilesize  +1);
+        int endRow = startRow + (GlobalInfo.yres / tilesize  +1);
 
         int offsetX = -xa + startCol * tilesize;
         int offsetY = -ya + startRow * tilesize;
