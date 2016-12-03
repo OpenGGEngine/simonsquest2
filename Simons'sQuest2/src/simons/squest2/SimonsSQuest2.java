@@ -71,16 +71,16 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         GlobalInfo.xres = screenwidth;
         GlobalInfo.yres = screenheight;
         
-        GameVariables.inventory.add(new Item("Negev", 50, 55, 55, 8, 0,1));
-        GameVariables.inventory.add(new Item("Dagger", 3, 20, 20, 1, 0,1));
-        GameVariables.inventory.add(new Item("Sword", 8, 15, 15, 2, 0,1));
-        GameVariables.inventory.add(new Item("Glock18", 20, 20, 20, 6, 0,1));
-        GameVariables.inventory.add(new Item("Mace", 10, 15, 15, 4, 0,1));
-        GameVariables.inventory.add(new Item("Bow and Arrow", 9, 15, 15, 3, 0,1));
-        GameVariables.inventory.add(new Item("Airhorn", 1000, -1, -1, 12, 0,1));
-        GameVariables.inventory.add(new Item("Mountain Dew", 0, 1, 1, 0, 20,1));
-        GameVariables.inventory.add(new Item("Dewritos", 0, 1, 1, 0, 20,1));
-        GameVariables.inventory.add(new Item("Deagle", 11, 20, 20, 5, 0,1));
+        GameVariables.inventory.add(new Item("Negev", 50, 8, 0,1));
+        GameVariables.inventory.add(new Item("Dagger", 3, 1, 0,1));
+        GameVariables.inventory.add(new Item("Sword", 8, 2, 0,1));
+        GameVariables.inventory.add(new Item("Glock18", 20, 6, 0,1));
+        GameVariables.inventory.add(new Item("Mace", 10, 4, 0,1));
+        GameVariables.inventory.add(new Item("Bow and Arrow", 9, 3, 0,1));
+        GameVariables.inventory.add(new Item("Airhorn", 1000, 12, 0,1));
+        GameVariables.inventory.add(new Item("Mountain Dew", 0, 0, 20,1));
+        GameVariables.inventory.add(new Item("Dewritos", 0, 0, 20,1));
+        GameVariables.inventory.add(new Item("Deagle", 11, 5, 0,1));
     }
     public void loop(GraphicsContext gc){
         s.update();

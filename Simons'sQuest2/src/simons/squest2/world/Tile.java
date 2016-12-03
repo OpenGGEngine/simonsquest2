@@ -20,7 +20,8 @@ public class Tile {
             SAND = 1,
             GRASS = 2,
             FOREST = 3,
-            MOUNTAIN = 4;
+            MOUNTAIN = 4,
+            PEAK = 5;
     
     public void setFeature(Feature f){
         this.f = f;
@@ -42,8 +43,10 @@ public class Tile {
             type = 2;
         }else if(altitude >= 0.5 && altitude < 0.8){
             type = 3;
-        }else{
+        }else if(altitude >= 0.8 && altitude < 0.96){
             type = 4;
+        }else{
+            type = 5;
         }
     }
     

@@ -17,11 +17,9 @@ public class Item {
     static{
         //items.add(new Item());
     }
-    public Item(String name, int attackpoer, int wear, int maxwear,int level,int heallevel,int quantity) {
+    public Item(String name, int attackpoer,int level,int heallevel,int quantity) {
         this.name = name;
         this.attackpoer = attackpoer;
-        this.wear = wear;
-        this.maxwear = maxwear;
         this.level = level;
         this.heallevel = heallevel;
         this.quantity = quantity;
@@ -33,8 +31,6 @@ public class Item {
     }
     public String name;
     public int attackpoer;
-    public int wear;
-    public int maxwear;
     public int level;
     public int heallevel;
     public int quantity;

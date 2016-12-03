@@ -86,7 +86,10 @@ public class GameState extends State {
                         gc.setFill(Color.GREEN);
                         break;
                     case 4: //water
-                        gc.setFill(Color.BROWN);
+                        gc.setFill(Color.DARKGRAY);
+                        break;
+                    case 5: //water
+                        gc.setFill(Color.WHITE);
                         break;
                     default:
                         gc.setFill(Color.CRIMSON);
