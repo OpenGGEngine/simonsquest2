@@ -22,6 +22,8 @@ public class GameVariables {
     
     public static int defense;
     
+    public static int evasion;
+    
     public static int x = 0,y= 0;
     
 }
