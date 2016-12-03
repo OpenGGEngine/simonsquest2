@@ -50,6 +50,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         Item.add("Airhorn");
         Item.add("Airhorn");
         Item.add("Airhorn");Item.add("Airhorn");
+        Item.add("Mountain Dew");
         
         
         primaryStage.initStyle(StageStyle.DECORATED);

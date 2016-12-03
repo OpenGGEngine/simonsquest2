@@ -18,6 +18,7 @@ import simons.squest2.Bar;
 import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
 import simons.squest2.Item;
+import simons.squest2.Item.ItemType;
 import static simons.squest2.states.MenuState.pointer;
 import simons.squest2.world.Enemy;
 
@@ -77,8 +78,17 @@ public class BattleState extends State{
                 }
                 gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
                 if(selected){
+                    Item i = Item.items.get(indexpointer);
+                    i.use();
                     myturn = false;
-                    e.damage(Item.items.get(indexpointer).attackpower);
+                    if(i.type == ItemType.ITEM){
+                        GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
+                    }else{
+                    e.damage(i.attackpower);
+                    }
+                    if(i.wear == 0){
+                        Item.items.remove(i);
+                    }
                     selected = false;
                 }
                 //gc.drawImage(GameState.arrow, 40 + (indexpointer % 4) * 250, 700 + (indexpointer / 4) * 60);
