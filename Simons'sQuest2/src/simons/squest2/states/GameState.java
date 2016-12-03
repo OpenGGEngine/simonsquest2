@@ -20,9 +20,11 @@ import simons.squest2.world.Enemy;
  * @author Warren
  */
 public class GameState extends State {
+
     //triggered
     World w;
-    final Image playersprite = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
+
+    final Image playersprite = new Image(new File("C:/res/menupic.png").toURI().toString());
     final int tilesize = 32;
 
     public GameState(String name) {
@@ -32,33 +34,43 @@ public class GameState extends State {
 
     @Override
     public void render(GraphicsContext gc) {
-        
         int xmax = (tilesize * w.map.length) - GlobalInfo.xres;
         int ymax = (tilesize * w.map.length) - GlobalInfo.yres;
-        
-        if(GameVariables.x > xmax-50) GameVariables.x = xmax-50;
-        if(GameVariables.y > ymax-50) GameVariables.y = ymax-50;
-        
-        if(GameVariables.x < 0) GameVariables.x = 0;
-        if(GameVariables.y < 0) GameVariables.y = 0;
-        
-        int xa = GameVariables.x;
-        int ya = GameVariables.y;
-        
+        int screenX = 650, screenY = 475;
+        int camX = GameVariables.x - screenX;
+        int camY = GameVariables.y - screenY;
+
+        camX = Math.max(0, Math.min(camX, xmax));
+        camY = Math.max(0, Math.min(camY, ymax));
+
+        if (GameVariables.x < screenX
+                || GameVariables.x > xmax + screenX) {
+            screenX = GameVariables.x - camX;
+        }
+        // top and bottom sides
+        if (GameVariables.y < screenY
+                || GameVariables.y > ymax+ screenY) {
+            screenY = GameVariables.y - camY;
+        }
+
+   
+        int xa = camX;
+        int ya = camY;
+
         //int xa = Math.max(0, Math.min(1900,GameVariables.x));
         //int ya = Math.max(0, Math.min(2250, GameVariables.y));
         /*
-        int startCol = (x / 32);
-        int endCol = startCol + (1000 / 31);
-        int startRow = (y / 32);
-        int endRow = startRow + (32);
-        int offsetX = -x + startCol * 32;
-        int offsetY = -y + startRow * 32;
-        */
+         int startCol = (x / 32);
+         int endCol = startCol + (1000 / 31);
+         int startRow = (y / 32);
+         int endRow = startRow + (32);
+         int offsetX = -x + startCol * 32;
+         int offsetY = -y + startRow * 32;
+         */
         int startCol = xa / tilesize;
-        int endCol = startCol + (GlobalInfo.xres / (tilesize - 1));
+        int endCol = Math.min(startCol + (GlobalInfo.xres / (tilesize - 1)),249);
         int startRow = ya / tilesize;
-        int endRow = startRow + (GlobalInfo.yres / tilesize + 1);
+        int endRow = Math.min(startRow + (GlobalInfo.yres / tilesize + 1),249);
 
         int offsetX = -xa + startCol * tilesize;
         int offsetY = -ya + startRow * tilesize;
@@ -68,19 +80,19 @@ public class GameState extends State {
                 int tile = w.map[c][r].type;
                 int x = (c - startCol) * tilesize + offsetX;
                 int y = (r - startRow) * tilesize + offsetY;
-                
-                if(w.map[c][r].getFeature() instanceof Town){
+
+                if (w.map[c][r].getFeature() instanceof Town) {
                     gc.setFill(Color.BLACK);
                     gc.fillRect(x, y, tilesize, tilesize);
                     continue;
                 }
-                
-                if(w.map[c][r].getFeature() instanceof Enemy){
+
+                if (w.map[c][r].getFeature() instanceof Enemy) {
                     gc.setFill(Color.RED);
                     gc.fillRect(x, y, tilesize, tilesize);
                     continue;
                 }
-                
+
                 switch (tile) {
                     case 0: //water
                         gc.setFill(Color.BLUE);
@@ -108,6 +120,7 @@ public class GameState extends State {
 
             }
         }
+        gc.drawImage(playersprite, screenX, screenY);
     }
 
     @Override

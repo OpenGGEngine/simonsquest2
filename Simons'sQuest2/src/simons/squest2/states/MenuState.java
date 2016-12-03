@@ -24,7 +24,7 @@ import simons.squest2.Item.ItemType;
  */
 public class MenuState extends State {
 
-    final Image simon = new Image(new File("C:/res/menupic.png").toURI().toString());
+    final Image simon = new Image(new File("C:/res/menupicture.png").toURI().toString());
     final Image pointeri = new Image(new File("C:/res/arrow.png").toURI().toString());
     final LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.REPEAT, new Stop(0.0, Color.DODGERBLUE), new Stop(1.0, Color.SKYBLUE));
     Bar bar = new Bar(Color.GREEN, GameVariables.playermaxhealth, GameVariables.playerhealth, 560, 40, 650, 20);

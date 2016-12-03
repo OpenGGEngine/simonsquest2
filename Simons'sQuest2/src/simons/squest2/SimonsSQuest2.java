@@ -31,7 +31,7 @@ import simons.squest2.world.Enemy;
 public class SimonsSQuest2 extends Application implements KeyboardListener{
     
     final Image beaversprite = new Image(new File("C:/res/beaver.png").toURI().toString());
-    public static int speed = 30;
+    public static int speed = 32;
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
     final GraphicsContext gc = screen.getGraphicsContext2D();
