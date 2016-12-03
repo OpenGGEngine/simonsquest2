@@ -33,7 +33,7 @@ public class GameState extends State {
     @Override
     public void render(GraphicsContext gc) {
         if(GameVariables.x > 1900) GameVariables.x = 1900;
-        if(GameVariables.y > 2250) GameVariables.y = 1900;
+        if(GameVariables.y > 2250) GameVariables.y = 2250;
         
         if(GameVariables.x < 0) GameVariables.x = 0;
         if(GameVariables.y < 0) GameVariables.y = 0;

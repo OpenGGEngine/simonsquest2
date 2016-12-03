@@ -25,7 +25,7 @@ import simons.squest2.states.StateMachine;
  */
 public class SimonsSQuest2 extends Application implements KeyboardListener{
 
-    public static int speed = 3;
+    public static int speed = 30;
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
     final GraphicsContext gc = screen.getGraphicsContext2D();
@@ -68,6 +68,16 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             }
         }.start();
         
+        GameVariables.inventory.add(new Item("Negev", 50, 55, 55, 8, 0,1));
+        GameVariables.inventory.add(new Item("Dagger", 3, 20, 20, 1, 0,1));
+        GameVariables.inventory.add(new Item("Sword", 8, 15, 15, 2, 0,1));
+        GameVariables.inventory.add(new Item("Glock18", 20, 20, 20, 6, 0,1));
+        GameVariables.inventory.add(new Item("Mace", 10, 15, 15, 4, 0,1));
+        GameVariables.inventory.add(new Item("Bow and Arrow", 9, 15, 15, 3, 0,1));
+        GameVariables.inventory.add(new Item("Airhorn", 1000, -1, -1, 12, 0,1));
+        GameVariables.inventory.add(new Item("Mountain Dew", 0, 1, 1, 0, 20,1));
+        GameVariables.inventory.add(new Item("Dewritos", 0, 1, 1, 0, 20,1));
+        GameVariables.inventory.add(new Item("Deagle", 11, 20, 20, 5, 0,1));
     }
     public void loop(GraphicsContext gc){
         s.update();
@@ -89,6 +99,12 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             case D:
                 GameVariables.x += speed;
                 break;
+            case ENTER:
+                if(s.currentState instanceof GameState){
+                    s.setState("MenuState");
+                }else if(s.currentState instanceof MenuState){
+                    s.setState("GameState");
+                }
                 
         }
     }

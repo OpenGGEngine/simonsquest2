@@ -14,11 +14,14 @@ import java.util.ArrayList;
 public class GameVariables {
     public static ArrayList<Item> inventory = new ArrayList<>();
     
-    public static int playerhealth;
+    public static int playerhealth = 100;
+    
+    public static int playermaxhealth=100;
     
     public static int attackpower;
     
     public static int defense;
     
     public static int x = 0,y= 0;
+    
 }
