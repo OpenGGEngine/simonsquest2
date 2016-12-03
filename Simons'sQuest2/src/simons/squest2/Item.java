@@ -75,7 +75,8 @@ public class Item implements Cloneable{
             return -1;
         }
         if (hitChance.nextInt()%100 < prob)
-            wear--;
+            return -2;
+        wear--;
         return attackpower;
     }
     
