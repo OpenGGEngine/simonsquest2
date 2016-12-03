@@ -15,6 +15,8 @@ import simons.squest2.GlobalUtil;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
 import simons.squest2.world.Enemy;
+import simons.squest2.world.Tile;
+import simons.squest2.world.RandomEnemyList;
 
 /**
  *
@@ -23,7 +25,7 @@ import simons.squest2.world.Enemy;
 public class GameState extends State {
 
     //triggered
-    World w;
+    static World w;
 
     final Image playersprite = new Image(new File("C:/res/menupic.png").toURI().toString());
     final int tilesize = 32;
@@ -130,7 +132,15 @@ public class GameState extends State {
             if(w.getTile(GlobalUtil.getPos()).f instanceof Enemy){
                 ((Enemy) w.getTile(GlobalUtil.getPos()).f).encounter();
             }
+        }    
+    }
+    
+    public static void onMove(){
+        if(w.getTile((GlobalUtil.getPos())).type == Tile.FOREST){
+            if(Math.random() < 0.01){
+                Enemy e = RandomEnemyList.getEnemy();
+                e.encounter();
+            }
         }
     }
-
 }

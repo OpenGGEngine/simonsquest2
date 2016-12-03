@@ -31,7 +31,7 @@ public class RandomEnemyList {
         Attack[] a2 = new Attack[3];
         a2[0] = new Attack("Push A", 8, false, 0.95);
         a2[1] = new Attack("P90 Rush", 15, false, 0.5);
-        a2[3] = new Attack("Ace", 25, false, 0.2);
+        a2[2] = new Attack("Ace", 25, false, 0.2);
         e2.setAttacks(a2);
         enemies.add(e2);
         

@@ -81,9 +81,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
             e.setAttacks(attacks);
         bs.setEnemy(e);
-        s.setState("BattleState");
-        
-        //s.setState("GameState");
+        s.setState("GameState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
@@ -113,7 +111,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer-=4;
                 }else{
-                GameVariables.y -= speed;
+                    GameVariables.y -= speed;
+                    GameState.onMove();
                 }
                 break;
             case S:
@@ -122,7 +121,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer+=4;
                 }else{
-                GameVariables.y += speed;
+                    GameVariables.y += speed;
+                    GameState.onMove();
                 }
                 break;
             case A:
@@ -131,7 +131,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer--;
                 }else{
-                GameVariables.x -= speed;
+                    
+                    GameVariables.x -= speed;
+                    GameState.onMove();
                 }
                 break;
             case D:
@@ -140,7 +142,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer++;
                 }else{
-                GameVariables.x += speed;
+                    GameVariables.x += speed;
+                    GameState.onMove();
                 }
                 break;
             case ESCAPE:

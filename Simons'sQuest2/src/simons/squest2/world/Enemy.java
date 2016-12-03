@@ -16,7 +16,7 @@ import simons.squest2.states.BattleState;
  * @author Javier
  */
 public class Enemy extends Feature implements Cloneable{
-    String enemyType;
+    public String enemyType;
     public Image image;
     public int health;
     public int maxhealth;
