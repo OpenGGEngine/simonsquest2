@@ -27,4 +27,6 @@ public class Item {
     public int level;
     public int heallevel;
     public int quantity;
+    
+    public ItemType type;
 }

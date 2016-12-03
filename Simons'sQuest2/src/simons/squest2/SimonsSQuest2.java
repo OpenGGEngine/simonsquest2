@@ -14,6 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import simons.squest2.states.MenuState;
 import simons.squest2.states.StateMachine;
 
 /**
@@ -46,10 +47,17 @@ public class SimonsSQuest2 extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
         
+        s = new StateMachine();
+        
+        MenuState ms = new MenuState("MenuState");
+        s.addState(ms);
+        s.setState("MenuState");
+        
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 gc.clearRect(0, 0, screenwidth, screenheight);
+                loop(gc);
             }
         }.start();
         

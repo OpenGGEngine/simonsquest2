@@ -18,13 +18,13 @@ public class BattleState extends State{
     }
 
     @Override
-    void render(GraphicsContext gc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void render(GraphicsContext gc) {
+        
     }
 
     @Override
-    void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update() {
+        
     }
     
 }

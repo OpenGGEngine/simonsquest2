@@ -17,6 +17,6 @@ public abstract class State {
     public State(String name) {
         this.name = name;
     }
-    abstract void render(GraphicsContext gc);
-    abstract void update();
+    public abstract void render(GraphicsContext gc);
+    public abstract void update();
 }
