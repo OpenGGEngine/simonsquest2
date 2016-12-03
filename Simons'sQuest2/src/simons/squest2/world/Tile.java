@@ -43,7 +43,7 @@ public class Tile {
             type = 2;
         }else if(altitude >= 0.5 && altitude < 0.8){
             type = 3;
-        }else if(altitude >= 0.8 && altitude < 0.96){
+        }else if(altitude >= 0.8 && altitude < 0.93){
             type = 4;
         }else{
             type = 5;

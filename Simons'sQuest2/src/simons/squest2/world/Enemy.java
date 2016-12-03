@@ -21,13 +21,16 @@ public class Enemy extends Feature{
     boolean alive = true;
     Attack[] attacks = new Attack[4];
     
-    public Enemy(int x, int y, String name, Image image, int health, Attack[] attacks){
+     public Enemy(int x, int y, String name, Image image, int health){
         this.x = x;
         this.y = y;
         this.enemyType = name;
         this.image = image;
         this.health = health;
-        this.attacks = attacks;
+    }
+    
+    public void setAttacks(Attack[] a){
+        this.attacks = a;
     }
     
 
