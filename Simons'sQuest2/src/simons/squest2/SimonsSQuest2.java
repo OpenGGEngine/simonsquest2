@@ -67,10 +67,16 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         
         s.addState(bs);
         
-        Attack scratch = new Attack("Scratch",10,false,1);
-        Attack[] shit = {scratch};
-        bs.setEnemy(new Enemy(0,0,"Beaver",beaversprite,40,shit));
+        Enemy e = new Enemy(1, 1, "Donald Trump", new Image(new File("C:/res/clinton.jpg").toURI().toString()), 125);
+            Attack[] attacks = new Attack[4];
+            attacks[0] = new Attack("Twitter War", 20, false, 0.6);//low prob
+            attacks[1] = new Attack("Lie", 15, false, 0.8);
+            attacks[2] = new Attack("Build a Wall", 20, true, 1);//heal
+            attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
+            e.setAttacks(attacks);
+        bs.setEnemy(e);
         s.setState("BattleState");
+        s.setState("GameState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
