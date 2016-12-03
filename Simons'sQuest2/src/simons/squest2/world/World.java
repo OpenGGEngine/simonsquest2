@@ -37,7 +37,7 @@ public class World {
         System.out.println("Generator finished");
     }
     double[][] generateMap(){
-        RandomGen simplexNoise=new RandomGen(100,0.1,5000);
+        RandomGen simplexNoise=new RandomGen(100,0.1,(int) (Math.random() * 1000));
 
         double xStart=0;
         double XEnd=map.length;

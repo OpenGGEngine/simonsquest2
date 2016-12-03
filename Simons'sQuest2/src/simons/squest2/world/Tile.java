@@ -28,11 +28,11 @@ public class Tile {
         altitude /= 2;
         if(altitude < 0.2){
             type = 0;
-        }else if(altitude >= 0.2 && altitude < 0.4){
+        }else if(altitude >= 0.1&& altitude < 0.25){
             type = 1;
-        }else if(altitude >= 0.4 && altitude < 0.6){
+        }else if(altitude >= 0.25 && altitude < 0.5){
             type = 2;
-        }else if(altitude >= 0.6 && altitude < 0.8){
+        }else if(altitude >= 0.5 && altitude < 0.8){
             type = 3;
         }else{
             type = 4;

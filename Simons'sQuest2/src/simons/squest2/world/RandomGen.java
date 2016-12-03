@@ -54,7 +54,6 @@ public class RandomGen {
           result=result+octaves[i].noise(x/frequencys[i], y/frequencys[i])* amplitudes[i];
         }
         result = result * 10;
-        System.out.println(result);
 
         return result;
 
