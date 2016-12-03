@@ -8,20 +8,26 @@ package simons.squest2;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import simons.squest2.states.MenuState;
 import simons.squest2.states.StateMachine;
+import simons.squest2.world.World;
 
 /**
  *
  * @author Javier
  */
 public class SimonsSQuest2 extends Application{
+    
+    World w;
     
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
@@ -37,6 +43,15 @@ public class SimonsSQuest2 extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        
+        this.screen.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                System.out.println("Enter Pressed");
+            }
+        });
+        
+        w = new World();
+        
         primaryStage.initStyle(StageStyle.DECORATED);
 
         Group root = new Group();

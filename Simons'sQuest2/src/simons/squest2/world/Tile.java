@@ -14,6 +14,7 @@ public class Tile {
     double altitude;
     int type;
     
+    
     public static final int 
             WATER = 0,            
             SAND = 1,
