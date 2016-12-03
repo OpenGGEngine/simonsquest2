@@ -143,12 +143,15 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 GameVariables.x += speed;
                 }
                 break;
-            case ENTER:
+            case ESCAPE:
                 if(s.currentState instanceof GameState){
                     s.setState("MenuState");
                 }else if(s.currentState instanceof MenuState){
                     s.setState("GameState");
-                }else if(s.currentState instanceof BattleState){
+                }
+                break;
+            case ENTER:
+                if(s.currentState instanceof BattleState){
                     BattleState.selected = true;
                 }
             break;
