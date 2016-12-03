@@ -44,11 +44,7 @@ public class SimonsSQuest2 extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        this.screen.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                System.out.println("Enter Pressed");
-            }
-        });
+        this.screen.setOnKeyPressed(KeyboardHandler.getHandler());
         
         w = new World();
         
