@@ -68,6 +68,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             }
         }.start();
         
+        GlobalInfo.xres = screenwidth;
+        GlobalInfo.yres = screenheight;
+        
         GameVariables.inventory.add(new Item("Negev", 50, 55, 55, 8, 0,1));
         GameVariables.inventory.add(new Item("Dagger", 3, 20, 20, 1, 0,1));
         GameVariables.inventory.add(new Item("Sword", 8, 15, 15, 2, 0,1));

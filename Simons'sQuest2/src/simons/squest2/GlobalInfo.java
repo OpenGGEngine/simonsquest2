@@ -14,4 +14,5 @@ import simons.squest2.world.World;
  */
 public class GlobalInfo {
     public static World w;
+    public static int xres, yres;
 }

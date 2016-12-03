@@ -15,7 +15,7 @@ import simons.squest2.Item;
  */
 public class Enemy extends Feature{
     String enemyType;
-    Image image;
+    public Image image;
     int health;
     Item drop;
     boolean alive = true;

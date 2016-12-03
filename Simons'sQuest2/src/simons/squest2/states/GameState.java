@@ -23,7 +23,6 @@ public class GameState extends State {
     World w;
     final Image playersprite = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
     final int tilesize = 32;
-    final int camerawidth = 1300, cameraheight = 950;
 
     public GameState(String name) {
         super(name);
@@ -32,8 +31,12 @@ public class GameState extends State {
 
     @Override
     public void render(GraphicsContext gc) {
-        if(GameVariables.x > 1900) GameVariables.x = 1900;
-        if(GameVariables.y > 2250) GameVariables.y = 2250;
+        
+        int xmax = (tilesize * w.map.length) - cameraheight;
+        int ymax = (tilesize * w.map.length) - camerawidth;
+        
+        if(GameVariables.x > xmax) GameVariables.x = xmax;
+        if(GameVariables.y > ymax) GameVariables.y = ymax;
         
         if(GameVariables.x < 0) GameVariables.x = 0;
         if(GameVariables.y < 0) GameVariables.y = 0;
