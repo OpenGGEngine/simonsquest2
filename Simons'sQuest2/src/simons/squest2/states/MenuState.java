@@ -16,6 +16,7 @@ import javafx.scene.paint.Stop;
 import simons.squest2.Bar;
 import simons.squest2.GameVariables;
 import simons.squest2.Item;
+import simons.squest2.Item.ItemType;
 
 /**
  *
@@ -29,6 +30,8 @@ public class MenuState extends State {
     Bar bar = new Bar(Color.GREEN, GameVariables.playermaxhealth, GameVariables.playerhealth, 560, 40, 650, 20);
     Bar wearbar = new Bar(Color.AQUA, 1, 1, 330, 240, 650, 20);
     public static int pointer = 0;
+    public static boolean selected = false;
+    
     public MenuState(String name) {
         super(name);
     }
@@ -51,7 +54,7 @@ public class MenuState extends State {
         gc.fillRect(0, 210, 1300, 3);
         gc.fillRect(0, 290, 1010, 3);
         gc.fillRect(1010, 210, 3, 900);
-        gc.fillText("Item Wear: " + GameVariables.inventory.get(pointer).wear + "/" + GameVariables.inventory.get(pointer).wearmax, 20, 260);
+        gc.fillText("Item Wear: " + Item.items.get(pointer).wear + "/" + Item.items.get(pointer).wearmax, 20, 260);
         
         
         int xc = 0, yc = 0;
@@ -65,6 +68,17 @@ public class MenuState extends State {
                 }
             
         }
+        if(selected){
+              Item i = Item.items.get(pointer);
+              if(i.type == ItemType.ITEM){
+                  i.use();
+                  GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
+                  if(i.wear == 0){
+                      Item.items.remove(i);
+                  }
+              }
+              selected = false;
+        }
     }
 
     @Override
@@ -75,8 +89,11 @@ public class MenuState extends State {
             pointer = Item.items.size() - 1;
         }
         bar.setValue(GameVariables.playerhealth);
-        wearbar.setMax(GameVariables.inventory.get(pointer).wearmax);
-        wearbar.setValue(GameVariables.inventory.get(pointer).wear);
+        wearbar.setMax(Item.items.get(pointer).wearmax);
+        wearbar.setValue(Item.items.get(pointer).wear);
+        
     }
-
+    
 }
+
+
