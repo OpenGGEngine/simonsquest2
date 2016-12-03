@@ -81,7 +81,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
             e.setAttacks(attacks);
         bs.setEnemy(e);
-        s.setState("GameState");
+        s.setState("BattleState");
         
         //s.setState("GameState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
@@ -108,10 +108,22 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
     public void keyPressed(KeyCode k) {
         switch(k){
             case W:
+                if(s.currentState instanceof MenuState){
+                    MenuState.pointer-=3;
+                }else if(s.currentState instanceof BattleState){
+                    BattleState.indexpointer-=4;
+                }else{
                 GameVariables.y -= speed;
+                }
                 break;
             case S:
+                if(s.currentState instanceof MenuState){
+                    MenuState.pointer+=3;
+                }else if(s.currentState instanceof BattleState){
+                    BattleState.indexpointer+=4;
+                }else{
                 GameVariables.y += speed;
+                }
                 break;
             case A:
                 if(s.currentState instanceof MenuState){

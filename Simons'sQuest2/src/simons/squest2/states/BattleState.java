@@ -79,6 +79,12 @@ public class BattleState extends State{
                 }
             }
             gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
+            gc.fillText("Wear: " + Item.items.get(indexpointer).wear + "/" + Item.items.get(indexpointer).wearmax, 1100, y-350);
+            if(Item.items.get(indexpointer).type == ItemType.ITEM){
+                gc.fillText("Health Healed: " + Item.items.get(indexpointer).attackpower, 1050, y-300);
+            }else{
+            gc.fillText("Damage: " + Item.items.get(indexpointer).attackpower, 1080, y-300);
+            }
             if(selected){
                 Item i = Item.items.get(indexpointer);
                 i.use();

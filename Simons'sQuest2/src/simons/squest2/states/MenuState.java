@@ -50,6 +50,7 @@ public class MenuState extends State {
         gc.fillText("Attack: " + GameVariables.attackpower, 250, 120);
         gc.fillText("Defense: " + GameVariables.attackpower, 450, 120);
         gc.fillText("Evasion: " + GameVariables.attackpower, 650, 120);
+        gc.fillText("Money: " + GameVariables.money+"$", 850, 120);
         
         gc.fillRect(0, 210, 1300, 3);
         gc.fillRect(0, 290, 1010, 3);
