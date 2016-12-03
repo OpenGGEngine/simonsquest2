@@ -27,7 +27,7 @@ public class World {
             for(int j = 0; j < map[0].length; j++){
                 map[i][j] = new Tile(rmap[i][j]);
                 if(map[i][j].type == Tile.GRASS){
-                    if(Math.random() > 0.998){
+                    if(Math.random() > 0.999){
                         map[i][j].setFeature(new Town());
                     }
                 }

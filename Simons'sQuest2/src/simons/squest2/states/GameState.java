@@ -57,7 +57,7 @@ public class GameState extends State {
         int startCol = xa / tilesize;
         int endCol = startCol + (GlobalInfo.xres / (tilesize-1));
         int startRow = ya / tilesize;
-        int endRow = startRow + (GlobalInfo.yres / tilesize  +1);
+        int endRow = startRow + (GlobalInfo.yres / tilesize + 1);
 
         int offsetX = -xa + startCol * tilesize;
         int offsetY = -ya + startRow * tilesize;

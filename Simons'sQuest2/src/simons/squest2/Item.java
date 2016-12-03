@@ -14,14 +14,15 @@ import java.util.List;
  */
 public class Item {
     static List<Item> items = new ArrayList<>();
+    public static final int 
+            WEAPON = 5,
+            ITEM = 6;
     static{
         //items.add(new Item());
     }
-    public Item(String name, int attackpoer,int level,int heallevel,int quantity) {
+    public Item(String name, int attackpoer, int quantity, int type) {
         this.name = name;
         this.attackpoer = attackpoer;
-        this.level = level;
-        this.heallevel = heallevel;
         this.quantity = quantity;
     }
     public static void add(String item){
@@ -31,8 +32,6 @@ public class Item {
     }
     public String name;
     public int attackpoer;
-    public int level;
-    public int heallevel;
     public int quantity;
     
     public ItemType type;
