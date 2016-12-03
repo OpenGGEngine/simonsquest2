@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import simons.squest2.Vector2i;
 
 /**
  *
@@ -22,6 +23,14 @@ public class World {
     public static final int WORLDSIZE = 250;
     
     public Tile[][] map = new Tile[WORLDSIZE][WORLDSIZE];
+    
+    public Tile getTile(Vector2i v){
+        return getTile(v.x,v.y);
+    }
+    
+    public Tile getTile(int x, int y){
+        return map[x][y];
+    }
     
     public World(){
         double[][] rmap = generateMap();
@@ -39,7 +48,7 @@ public class World {
         int xr;
         int yr;
         boolean fin = false;
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 5; i++){
             fin = false;
             do{
                 
@@ -52,7 +61,7 @@ public class World {
                             e = new Enemy(xr, yr, "Donald Trump", new Image(new File("C:/res/trump.png").toURI().toString()), 125);
                             Attack[] attacks = new Attack[4];
                             attacks[0] = new Attack("Twitter War", 20, false, 0.6);//low prob
-                            attacks[1] = new Attack("Lie", 15, false, 0.8);
+                            attacks[1] = new Attack("Lie", 15, false, 0.8);//strong attack
                             attacks[2] = new Attack("Build a Wall", 20, true, 1);//heal
                             attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
                             e.setAttacks(attacks);
@@ -62,7 +71,7 @@ public class World {
                             Attack[] attacks2 = new Attack[4];
                             attacks2[0] = new Attack("Shatter Glass Ceiling", 15, false, 0.9);//core attack
                             attacks2[1] = new Attack("Delete Email", 15, true, 1);//heal
-                            attacks2[2] = new Attack("Spread Pneumonia", 25, false, 0.8);
+                            attacks2[2] = new Attack("Spread Pneumonia", 25, false, 0.8);//strong attack
                             attacks2[3] = new Attack("Rig Battle", 50, false, 0.1);//low prob
                             e.setAttacks(attacks2);
                             break;
@@ -71,18 +80,27 @@ public class World {
                             Attack[] attacks3 = new Attack[4];
                             attacks3[0] = new Attack("Enter Safe Space", 25, true, 1);//heal
                             attacks3[1] = new Attack("Remove Privilege", 20, false, 0.95);//core attack
-                            attacks3[2] = new Attack("Trigger", 25, false, 0.8);
-                            attacks3[3] = new Attack("Spew bullshit on YouTube", 30, false, 0.5);//low prob
+                            attacks3[2] = new Attack("Trigger", 25, false, 0.8);//strong attack
+                            attacks3[3] = new Attack("Rage on YouTube", 30, false, 0.5);//low prob
                             e.setAttacks(attacks3);
+                            break;
+                        case 3:
+                            e = new Enemy(xr, yr, "Stalin", new Image(new File("C:/res/stalin.png").toURI().toString()), 250);
+                            Attack[] attacks4 = new Attack[4];
+                            attacks4[0] = new Attack("Seize means of production", 150, true, 0.2);//super heal
+                            attacks4[1] = new Attack("Create camp", 35, true, 1);//heal
+                            attacks4[2] = new Attack("Convert to communism", 30, false, 0.95);//core attack
+                            attacks4[3] = new Attack("Fire nuclear missile", 50, false, 0.3);//low prob
+                            e.setAttacks(attacks4);
                             break;
                         default:
                             e = new Enemy(xr, yr, "Robbie Rotten", new Image(new File("C:/res/numberone.png").toURI().toString()), 200);
-                            Attack[] attacks4 = new Attack[4];
-                            attacks4[0] = new Attack("Throw Net", 30, false, 0.95);//core attack
-                            attacks4[1] = new Attack("Sneak Around", 30, true, 1);//heal
-                            attacks4[2] = new Attack("Catch a good guy, like a real superhero", 50, false, 0.3);//low prob
-                            attacks4[3] = new Attack("Slip and slide on banana peel", 35, false, 0.8);
-                            e.setAttacks(attacks4);
+                            Attack[] attacks5 = new Attack[4];
+                            attacks5[0] = new Attack("Throw Net", 30, false, 0.95);//core attack
+                            attacks5[1] = new Attack("Sneak Around", 30, true, 1);//heal
+                            attacks5[2] = new Attack("Catch a good guy, like a real superhero", 50, false, 0.3);//low prob
+                            attacks5[3] = new Attack("Slip and slide on banana peel", 35, false, 0.8);//strong attack
+                            e.setAttacks(attacks5);
                             break;
                     }
                     map[xr][yr].setFeature(e);

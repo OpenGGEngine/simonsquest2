@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
+import simons.squest2.GlobalUtil;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
 import simons.squest2.world.Enemy;
@@ -125,7 +126,11 @@ public class GameState extends State {
 
     @Override
     public void update() {
-
+        if(w.getTile(GlobalUtil.getPos()).f != null){
+            if(w.getTile(GlobalUtil.getPos()).f instanceof Enemy){
+                ((Enemy) w.getTile(GlobalUtil.getPos()).f).encounter();
+            }
+        }
     }
 
 }

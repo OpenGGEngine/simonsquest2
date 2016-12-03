@@ -15,7 +15,7 @@ import simons.squest2.states.BattleState;
  *
  * @author Javier
  */
-public class Enemy extends Feature{
+public class Enemy extends Feature implements Cloneable{
     String enemyType;
     public Image image;
     public int health;
@@ -48,16 +48,7 @@ public class Enemy extends Feature{
     
     public String attack(){
         double rand = Math.random();
-        Attack a;
-        if(rand < 0.25){
-            a = attacks[0];
-        }else if(rand >= 0.25 && rand < 0.5){
-            a = attacks[1];
-        }else if(rand >= 0.5 && rand < 0.75){
-            a = attacks[2];
-        }else{
-            a = attacks[3];
-        }
+        Attack a = attacks[(int) (Math.random() * attacks.length)];
         
         if(a.heal){
             health = (int)Math.min((health + a.damage), maxhealth);
@@ -85,4 +76,10 @@ public class Enemy extends Feature{
         }
         return enemyType + " died and dropped 1 " + name + "!";
     }
+    
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
 }

@@ -13,7 +13,7 @@ package simons.squest2.world;
 public class Tile {
     double altitude;
     public int type;
-    Feature f;
+    public Feature f;
     
     public static final int 
             WATER = 0,            
