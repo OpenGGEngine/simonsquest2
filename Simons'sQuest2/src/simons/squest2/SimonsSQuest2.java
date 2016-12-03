@@ -6,25 +6,31 @@
 
 package simons.squest2;
 
+import java.io.File;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import simons.squest2.states.BattleState;
 import simons.squest2.states.GameState;
 import simons.squest2.states.MenuState;
 import simons.squest2.states.StateMachine;
+import simons.squest2.world.Attack;
+import simons.squest2.world.Enemy;
 
 /**
  *
  * @author Javier
  */
 public class SimonsSQuest2 extends Application implements KeyboardListener{
-
+    
+    final Image beaversprite = new Image(new File("C:/res/beaver.png").toURI().toString());
     public static int speed = 30;
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
@@ -57,7 +63,14 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         s.addState(ms);
         GameState gs = new GameState("GameState");
         s.addState(gs);
-        s.setState("GameState");
+        BattleState bs = new BattleState("BattleState");
+        
+        s.addState(bs);
+        
+        Attack scratch = new Attack("Scratch",10,false,1);
+        Attack[] shit = {scratch};
+        bs.setEnemy(new Enemy(0,0,"Beaver",beaversprite,40,shit));
+        s.setState("BattleState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
@@ -72,6 +85,23 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         GlobalInfo.yres = screenheight;
         GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
         GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
+        
     }
     public void loop(GraphicsContext gc){
         s.update();
@@ -90,6 +120,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             case A:
                 if(s.currentState instanceof MenuState){
                     MenuState.pointer--;
+                }else if(s.currentState instanceof BattleState){
+                    BattleState.indexpointer--;
                 }else{
                 GameVariables.x -= speed;
                 }
@@ -97,6 +129,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             case D:
                 if(s.currentState instanceof MenuState){
                     MenuState.pointer++;
+                }else if(s.currentState instanceof BattleState){
+                    BattleState.indexpointer++;
                 }else{
                 GameVariables.x += speed;
                 }

@@ -25,7 +25,7 @@ public class MenuState extends State {
 
     final Image simon = new Image(new File("C:/res/menupic.png").toURI().toString());
     final Image pointeri = new Image(new File("C:/res/arrow.png").toURI().toString());
-    final LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.REPEAT, new Stop(0.0, Color.BLUE), new Stop(1.0, Color.DODGERBLUE));
+    final LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.REPEAT, new Stop(0.0, Color.DODGERBLUE), new Stop(1.0, Color.SKYBLUE));
     Bar bar = new Bar(Color.GREEN, GameVariables.playermaxhealth, GameVariables.playerhealth, 560, 40, 650, 20);
     Bar wearbar = new Bar(Color.AQUA, 1, 1, 330, 240, 650, 20);
     public static int pointer = 0;

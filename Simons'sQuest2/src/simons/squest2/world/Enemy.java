@@ -16,7 +16,7 @@ import simons.squest2.Item;
 public class Enemy extends Feature{
     String enemyType;
     public Image image;
-    int health;
+    public int health;
     String drop;
     boolean alive = true;
     Attack[] attacks = new Attack[4];
@@ -30,12 +30,6 @@ public class Enemy extends Feature{
         this.attacks = attacks;
     }
     
-    public class Attack{
-        String name;
-        double damage;
-        boolean heal;
-        double chanceToHit;
-    }
 
     public String encounter(){
         return enemyType + " has been encountered!";
