@@ -17,19 +17,26 @@ import javafx.scene.canvas.GraphicsContext;
 public class World {
     List<Enemy> entities = new ArrayList<>();
     
-    public Tile[][] map = new Tile[100][100];
+    public Tile[][] map = new Tile[150][150];
     
     public World(){
         double[][] rmap = generateMap();
         for(int i = 0; i < map.length; i++){
             for(int j = 0; j < map[0].length; j++){
                 map[i][j] = new Tile(rmap[i][j]);
+                if(map[i][j].type == Tile.GRASS){
+                    if(Math.random() > 0.998){
+                        map[i][j].setFeature(new Town());
+                    }
+                }
             }
         }
         
+        
+        
         for(Tile[] x : map){
             for(Tile y : x){
-                System.out.print(y.type + " ");
+                System.out.print(y + " ");
             }
             System.out.println("");
         }
@@ -37,7 +44,7 @@ public class World {
         System.out.println("Generator finished");
     }
     double[][] generateMap(){
-        RandomGen simplexNoise=new RandomGen(100,0.1,(int) (Math.random() * 1000));
+        RandomGen simplexNoise=new RandomGen(6,0.1,(int) (Math.random() * 1000));
 
         double xStart=0;
         double XEnd=map.length;

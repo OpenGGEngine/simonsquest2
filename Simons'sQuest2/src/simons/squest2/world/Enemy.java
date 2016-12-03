@@ -13,13 +13,12 @@ import simons.squest2.Item;
  *
  * @author Javier
  */
-public class Enemy {
-    int x,y;
+public class Enemy extends Feature{
     String enemyType;
     Image image;
     int health;
     Item drop;
-    boolean dead = false;
+    boolean alive = true;
     
     public Enemy(int x, int y, String name, Image image){
         this.x = x;
@@ -43,7 +42,7 @@ public class Enemy {
     }
     
     public Item onKill(){
-        dead = false;
+        alive = false;
         return drop;
     }
 }

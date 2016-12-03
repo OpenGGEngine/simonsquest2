@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import simons.squest2.GameVariables;
+import simons.squest2.world.Town;
 import simons.squest2.world.World;
 
 /**
@@ -53,6 +54,11 @@ public class GameState extends State {
                 int tile = w.map[c][r].type;
                 int x = (c - startCol) * tilesize + offsetX;
                 int y = (r - startRow) * tilesize + offsetY;
+                if(w.map[c][r].getFeature() instanceof Town){
+                    gc.setFill(Color.BLACK);
+                    gc.fillRect(x, y, tilesize, tilesize);
+                    continue;
+                }
                 switch (tile) {
                     case 0: //water
                         gc.setFill(Color.BLUE);

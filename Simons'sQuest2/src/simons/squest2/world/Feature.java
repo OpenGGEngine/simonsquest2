@@ -4,15 +4,13 @@
  * and open the template in the editor.
  */
 
-package simons.squest2;
+package simons.squest2.world;
 
 /**
  *
  * @author Javier
  */
-public class Player {
+public class Feature {
     int x,y;
-    int health;
-    int bossCount;
-    
+    String name;
 }

@@ -39,8 +39,6 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
-        
 
         primaryStage.initStyle(StageStyle.DECORATED);
 

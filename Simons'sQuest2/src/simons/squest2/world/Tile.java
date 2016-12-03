@@ -13,7 +13,7 @@ package simons.squest2.world;
 public class Tile {
     double altitude;
     public int type;
-    
+    Feature f;
     
     public static final int 
             WATER = 0,            
@@ -21,6 +21,14 @@ public class Tile {
             GRASS = 2,
             FOREST = 3,
             MOUNTAIN = 4;
+    
+    public void setFeature(Feature f){
+        this.f = f;
+    }
+    
+    public Feature getFeature(){
+        return f;
+    }
     
     public Tile(double alt){
         altitude = alt;
@@ -37,5 +45,15 @@ public class Tile {
         }else{
             type = 4;
         }
+    }
+    
+    @Override
+    public String toString(){
+        if(f == null)
+            return String.valueOf(type);
+        
+        if(f instanceof Town)
+            return "T";
+        return "E";
     }
 }
