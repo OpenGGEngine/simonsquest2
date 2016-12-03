@@ -70,17 +70,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         
         GlobalInfo.xres = screenwidth;
         GlobalInfo.yres = screenheight;
-        
-        GameVariables.inventory.add(new Item("Negev", 50, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Dagger", 3, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Sword", 8, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Glock18", 20, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Mace", 10, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Bow and Arrow", 9, 1, Item.WEAPON));
-        GameVariables.inventory.add(new Item("Airhorn", 1000, 1, Item.ITEM));
-        GameVariables.inventory.add(new Item("Mountain Dew", 0, 1, Item.ITEM));
-        GameVariables.inventory.add(new Item("Dewritos", 0, 1, Item.ITEM));
-        GameVariables.inventory.add(new Item("Deagle", 11, 1, Item.ITEM));
+        GameVariables.inventory.add(new Item("Dumb Javi",100,1,5,300,300,1));
+        GameVariables.inventory.add(new Item("Dumb Javi 2",100,1,5,200,200,1));
     }
     public void loop(GraphicsContext gc){
         s.update();
@@ -97,10 +88,18 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 GameVariables.y += speed;
                 break;
             case A:
+                if(s.currentState instanceof MenuState){
+                    MenuState.pointer--;
+                }else{
                 GameVariables.x -= speed;
+                }
                 break;
             case D:
+                if(s.currentState instanceof MenuState){
+                    MenuState.pointer++;
+                }else{
                 GameVariables.x += speed;
+                }
                 break;
             case ENTER:
                 if(s.currentState instanceof GameState){

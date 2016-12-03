@@ -14,16 +14,22 @@ import java.util.List;
  */
 public class Item {
     static List<Item> items = new ArrayList<>();
+    public int wear;
+    public int wearmax;
+    public double prob;
     public static final int 
             WEAPON = 5,
             ITEM = 6;
     static{
         //items.add(new Item());
     }
-    public Item(String name, int attackpoer, int quantity, int type) {
+    public Item(String name, int attackpoer, int quantity, int type,int wear,int wearmax,double prob) {
         this.name = name;
         this.attackpoer = attackpoer;
         this.quantity = quantity;
+        this.wear = wear;
+        this.wearmax = wearmax;
+        this.prob = prob;
     }
     public static void add(String item){
         items.stream().filter((i) -> (i.name.equals(item))).forEach((i) -> {
