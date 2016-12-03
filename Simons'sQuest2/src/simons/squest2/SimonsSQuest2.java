@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import simons.squest2.states.GameState;
 import simons.squest2.states.MenuState;
 import simons.squest2.states.StateMachine;
 import simons.squest2.world.World;
@@ -26,9 +27,7 @@ import simons.squest2.world.World;
  * @author Javier
  */
 public class SimonsSQuest2 extends Application{
-    
-    World w;
-    
+
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
     final GraphicsContext gc = screen.getGraphicsContext2D();
@@ -45,9 +44,7 @@ public class SimonsSQuest2 extends Application{
     public void start(Stage primaryStage) throws Exception {
         
         this.screen.setOnKeyPressed(KeyboardHandler.getHandler());
-        
-        w = new World();
-        
+
         primaryStage.initStyle(StageStyle.DECORATED);
 
         Group root = new Group();
@@ -62,7 +59,10 @@ public class SimonsSQuest2 extends Application{
         
         MenuState ms = new MenuState("MenuState");
         s.addState(ms);
-        s.setState("MenuState");
+        GameState gs = new GameState("GameState");
+        s.addState(gs);
+        s.setState("GameState");
+        
         
         new AnimationTimer() {
             @Override

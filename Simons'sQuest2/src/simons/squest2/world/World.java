@@ -8,6 +8,7 @@ package simons.squest2.world;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.List;
 public class World {
     List<Enemy> entities = new ArrayList<>();
     
-    Tile[][] map = new Tile[100][100];
+    public Tile[][] map = new Tile[100][100];
     
     public World(){
         double[][] rmap = generateMap();
@@ -56,6 +57,9 @@ public class World {
             }
         }
         return result;
+   }
+   public void render(GraphicsContext gc){
+       
    }
 
 }

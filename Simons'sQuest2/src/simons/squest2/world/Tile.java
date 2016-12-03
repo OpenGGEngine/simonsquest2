@@ -12,7 +12,7 @@ package simons.squest2.world;
  */
 public class Tile {
     double altitude;
-    int type;
+    public int type;
     
     
     public static final int 
