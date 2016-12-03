@@ -25,6 +25,7 @@ import simons.squest2.states.StateMachine;
  */
 public class SimonsSQuest2 extends Application implements KeyboardListener{
 
+    public static int speed = 3;
     public static final int screenwidth = 1300, screenheight = 950;
     final Canvas screen = new Canvas(screenwidth, screenheight);
     final GraphicsContext gc = screen.getGraphicsContext2D();
@@ -75,7 +76,21 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
 
     @Override
     public void keyPressed(KeyCode k) {
-        
+        switch(k){
+            case W:
+                GameVariables.y -= speed;
+                break;
+            case S:
+                GameVariables.y += speed;
+                break;
+            case A:
+                GameVariables.x -= speed;
+                break;
+            case D:
+                GameVariables.x += speed;
+                break;
+                
+        }
     }
 
     @Override

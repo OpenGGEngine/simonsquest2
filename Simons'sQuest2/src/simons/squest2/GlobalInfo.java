@@ -6,13 +6,12 @@
 
 package simons.squest2;
 
+import simons.squest2.world.World;
+
 /**
  *
  * @author Javier
  */
-public class Player {
-    int x,y;
-    int health;
-    int bossCount;
-    
+public class GlobalInfo {
+    public static World w;
 }

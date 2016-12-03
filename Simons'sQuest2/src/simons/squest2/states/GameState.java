@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import simons.squest2.GameVariables;
+import simons.squest2.GlobalInfo;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
 
@@ -26,13 +27,22 @@ public class GameState extends State {
 
     public GameState(String name) {
         super(name);
-        w = new World();
+        GlobalInfo.w = w = new World();
     }
 
     @Override
     public void render(GraphicsContext gc) {
-        int xa = Math.max(0, Math.min(1900,GameVariables.x));
-        int ya = Math.max(0, Math.min(2250, GameVariables.y));
+        if(GameVariables.x > 1900) GameVariables.x = 1900;
+        if(GameVariables.y > 2250) GameVariables.y = 1900;
+        
+        if(GameVariables.x < 0) GameVariables.x = 0;
+        if(GameVariables.y < 0) GameVariables.y = 0;
+        
+        int xa = GameVariables.x;
+        int ya = GameVariables.y;
+        
+        //int xa = Math.max(0, Math.min(1900,GameVariables.x));
+        //int ya = Math.max(0, Math.min(2250, GameVariables.y));
         /*
         int startCol = (x / 32);
         int endCol = startCol + (1000 / 31);
@@ -44,7 +54,7 @@ public class GameState extends State {
         int startCol = xa / tilesize;
         int endCol = startCol + (camerawidth / (tilesize-1));
         int startRow = ya / tilesize;
-        int endRow = startRow + (cameraheight / tilesize);
+        int endRow = startRow + (cameraheight / tilesize  +1);
 
         int offsetX = -xa + startCol * tilesize;
         int offsetY = -ya + startRow * tilesize;

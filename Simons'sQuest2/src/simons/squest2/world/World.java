@@ -17,7 +17,9 @@ import javafx.scene.canvas.GraphicsContext;
 public class World {
     List<Enemy> entities = new ArrayList<>();
     
-    public Tile[][] map = new Tile[150][150];
+    public static final int WORLDSIZE = 250;
+    
+    public Tile[][] map = new Tile[WORLDSIZE][WORLDSIZE];
     
     public World(){
         double[][] rmap = generateMap();
@@ -47,12 +49,12 @@ public class World {
         RandomGen simplexNoise=new RandomGen(6,0.1,(int) (Math.random() * 1000));
 
         double xStart=0;
-        double XEnd=map.length;
+        double XEnd=WORLDSIZE;
         double yStart=0;
-        double yEnd=map[0].length;
+        double yEnd=WORLDSIZE;
 
-        int xResolution=200;
-        int yResolution=200;
+        int xResolution= WORLDSIZE;
+        int yResolution= WORLDSIZE;
 
         double[][] result=new double[xResolution][yResolution];
 
