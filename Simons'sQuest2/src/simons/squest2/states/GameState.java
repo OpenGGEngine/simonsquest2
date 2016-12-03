@@ -30,13 +30,23 @@ public class GameState extends State {
 
     @Override
     public void render(GraphicsContext gc) {
-        int startCol = GameVariables.x / tilesize;
-        int endCol = startCol + (camerawidth / tilesize);
-        int startRow = GameVariables.x / tilesize;
+        int xa = Math.max(0, Math.min(300,GameVariables.x));
+        int ya = Math.max(0, Math.min(650, GameVariables.y));
+        /*
+        int startCol = (x / 32);
+        int endCol = startCol + (1000 / 31);
+        int startRow = (y / 32);
+        int endRow = startRow + (32);
+        int offsetX = -x + startCol * 32;
+        int offsetY = -y + startRow * 32;
+        */
+        int startCol = xa / tilesize;
+        int endCol = startCol + (camerawidth / (tilesize-1));
+        int startRow = ya / tilesize;
         int endRow = startRow + (cameraheight / tilesize);
 
-        int offsetX = -GameVariables.x + startCol * tilesize;
-        int offsetY = -GameVariables.y + startRow * tilesize;
+        int offsetX = -xa + startCol * tilesize;
+        int offsetY = -ya + startRow * tilesize;
 
         for (int c = startCol; c <= endCol; c++) {
             for (int r = startRow; r <= endRow; r++) {
