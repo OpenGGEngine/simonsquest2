@@ -21,7 +21,7 @@ public class GameState extends State {
 
     World w;
     final Image playersprite = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
-    final int tilesize = 16;
+    final int tilesize = 32;
     final int camerawidth = 1300, cameraheight = 950;
 
     public GameState(String name) {
@@ -31,8 +31,8 @@ public class GameState extends State {
 
     @Override
     public void render(GraphicsContext gc) {
-        int xa = Math.max(0, Math.min(300,GameVariables.x));
-        int ya = Math.max(0, Math.min(650, GameVariables.y));
+        int xa = Math.max(0, Math.min(1900,GameVariables.x));
+        int ya = Math.max(0, Math.min(2250, GameVariables.y));
         /*
         int startCol = (x / 32);
         int endCol = startCol + (1000 / 31);
