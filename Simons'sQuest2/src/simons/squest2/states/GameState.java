@@ -13,6 +13,7 @@ import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
+import simons.squest2.world.Enemy;
 
 /**
  *
@@ -32,11 +33,11 @@ public class GameState extends State {
     @Override
     public void render(GraphicsContext gc) {
         
-        int xmax = (tilesize * w.map.length) - GlobalInfo.xres-5;
-        int ymax = (tilesize * w.map.length) - GlobalInfo.yres-5;
+        int xmax = (tilesize * w.map.length) - GlobalInfo.xres;
+        int ymax = (tilesize * w.map.length) - GlobalInfo.yres;
         
-        if(GameVariables.x > xmax) GameVariables.x = xmax;
-        if(GameVariables.y > ymax) GameVariables.y = ymax;
+        if(GameVariables.x > xmax-50) GameVariables.x = xmax-50;
+        if(GameVariables.y > ymax-50) GameVariables.y = ymax-50;
         
         if(GameVariables.x < 0) GameVariables.x = 0;
         if(GameVariables.y < 0) GameVariables.y = 0;
@@ -55,7 +56,7 @@ public class GameState extends State {
         int offsetY = -y + startRow * 32;
         */
         int startCol = xa / tilesize;
-        int endCol = startCol + (GlobalInfo.xres / (tilesize-1));
+        int endCol = startCol + (GlobalInfo.xres / (tilesize - 1));
         int startRow = ya / tilesize;
         int endRow = startRow + (GlobalInfo.yres / tilesize + 1);
 
@@ -67,11 +68,19 @@ public class GameState extends State {
                 int tile = w.map[c][r].type;
                 int x = (c - startCol) * tilesize + offsetX;
                 int y = (r - startRow) * tilesize + offsetY;
+                
                 if(w.map[c][r].getFeature() instanceof Town){
                     gc.setFill(Color.BLACK);
                     gc.fillRect(x, y, tilesize, tilesize);
                     continue;
                 }
+                
+                if(w.map[c][r].getFeature() instanceof Enemy){
+                    gc.setFill(Color.RED);
+                    gc.fillRect(x, y, tilesize, tilesize);
+                    continue;
+                }
+                
                 switch (tile) {
                     case 0: //water
                         gc.setFill(Color.BLUE);

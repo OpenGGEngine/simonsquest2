@@ -69,7 +69,6 @@ public class BattleState extends State{
             
                 int xc = 0, yc = 0;
                 for (Item i : Item.items) {
-                    System.out.println("sd");
                     gc.fillText(i.name, 40 + (xc % 4) * 250, 690 + (yc * 60));
                     xc++;
                     if ((xc % 4 == 0)) {

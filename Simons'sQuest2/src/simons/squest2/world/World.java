@@ -6,10 +6,11 @@
 
 package simons.squest2.world;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
-import simons.squest2.GameVariables;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -35,7 +36,63 @@ public class World {
             }
         }
         
-        int xr = (int)(Math.random() * WORLDSIZE);
+        int xr;
+        int yr;
+        boolean fin = false;
+        for(int i = 0; i < 4; i++){
+            fin = false;
+            do{
+                
+                xr = (int)(Math.random() * (WORLDSIZE-10))+5;
+                yr = (int)(Math.random() * (WORLDSIZE-10))+5;
+                if(map[xr][yr].type == Tile.FOREST && map[xr][yr].f == null){
+                    Enemy e;
+                    switch(i){
+                        case 0:
+                            e = new Enemy(xr, yr, "Donald Trump", new Image(new File("C:/res/trump.png").toURI().toString()), 125);
+                            Attack[] attacks = new Attack[4];
+                            attacks[0] = new Attack("Twitter War", 20, false, 0.6);//low prob
+                            attacks[1] = new Attack("Lie", 15, false, 0.8);
+                            attacks[2] = new Attack("Build a Wall", 20, true, 1);//heal
+                            attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
+                            e.setAttacks(attacks);
+                            break;
+                        case 1:
+                            e = new Enemy(xr, yr, "Hillary Clinton", new Image(new File("C:/res/clinton.png").toURI().toString()), 100);
+                            Attack[] attacks2 = new Attack[4];
+                            attacks2[0] = new Attack("Shatter Glass Ceiling", 15, false, 0.9);//core attack
+                            attacks2[1] = new Attack("Delete Email", 15, true, 1);//heal
+                            attacks2[2] = new Attack("Spread Pneumonia", 25, false, 0.8);
+                            attacks2[3] = new Attack("Rig Battle", 50, false, 0.1);//low prob
+                            e.setAttacks(attacks2);
+                            break;
+                        case 2:
+                            e = new Enemy(xr, yr, "Anita Sarkeesian", new Image(new File("C:/res/anita.png").toURI().toString()), 150);
+                            Attack[] attacks3 = new Attack[4];
+                            attacks3[0] = new Attack("Enter Safe Space", 25, true, 1);//heal
+                            attacks3[1] = new Attack("Remove Privilege", 20, false, 0.95);//core attack
+                            attacks3[2] = new Attack("Trigger", 25, false, 0.8);
+                            attacks3[3] = new Attack("Spew bullshit on YouTube", 30, false, 0.5);//low prob
+                            e.setAttacks(attacks3);
+                            break;
+                        default:
+                            e = new Enemy(xr, yr, "Robbie Rotten", new Image(new File("C:/res/numberone.png").toURI().toString()), 200);
+                            Attack[] attacks4 = new Attack[4];
+                            attacks4[0] = new Attack("Throw Net", 30, false, 0.95);//core attack
+                            attacks4[1] = new Attack("Sneak Around", 30, true, 1);//heal
+                            attacks4[2] = new Attack("Catch a good guy, like a real superhero", 50, false, 0.3);//low prob
+                            attacks4[3] = new Attack("Slip and slide on banana peel", 35, false, 0.8);
+                            e.setAttacks(attacks4);
+                            break;
+                    }
+                    map[xr][yr].setFeature(e);
+                    System.out.println(e.enemyType);
+                    System.out.println(((Enemy) map[xr][yr].f).enemyType);
+                    fin = true;
+                }
+            }while(!fin);
+        }
+        
         
         for(Tile[] x : map){
             for(Tile y : x){
@@ -43,9 +100,6 @@ public class World {
             }
             System.out.println("");
         }
-        
-        
-        
         System.out.println("Generator finished");
     }
     double[][] generateMap(){

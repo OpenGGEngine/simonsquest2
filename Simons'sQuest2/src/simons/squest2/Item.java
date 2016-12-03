@@ -57,7 +57,7 @@ public class Item implements Cloneable{
     public static void add(String item){
         Item i = getTemplate(item);
         if (i == null)
-            throw new IllegalArgumentException(item + " is not valid item name");
+            return;
         items.add(i);
     }
     
