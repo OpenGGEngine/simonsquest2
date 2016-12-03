@@ -18,7 +18,7 @@ import simons.squest2.world.World;
  * @author Warren
  */
 public class GameState extends State {
-
+    //triggered
     World w;
     final Image playersprite = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
     final int tilesize = 32;
