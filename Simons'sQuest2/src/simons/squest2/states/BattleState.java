@@ -19,6 +19,7 @@ import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
 import simons.squest2.Item;
 import simons.squest2.Item.ItemType;
+import simons.squest2.SimonsSQuest2;
 import static simons.squest2.states.MenuState.pointer;
 import simons.squest2.world.Enemy;
 
@@ -31,6 +32,7 @@ public class BattleState extends State{
     final LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.REPEAT, new Stop(0.0, Color.DODGERBLUE), new Stop(1.0, Color.LIGHTSTEELBLUE));
     Enemy e;
     public boolean myturn = true;
+    boolean comp = true;
     public static int indexpointer = 0;
     final Image battlebackground = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
     final Image pointeri = new Image(new File("C:/res/arrow.png").toURI().toString());
@@ -61,55 +63,69 @@ public class BattleState extends State{
         gc.setFill(Color.BLACK);
         gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 25));
         gc.fillText("Health " + GameVariables.playerhealth + "/" + GameVariables.playermaxhealth, 20, y-360);
-            gc.fillText("Enemy Health " + e.health + "/" + enemybar.max, 20, y-320);
+        gc.fillText("Enemy Health " + e.health + "/" + enemybar.max, 20, y-320);
            
         if(myturn){
             
             gc.fillRect(0, y-300, 1000,2 );
             gc.fillRect(1000, y-400, 2,400 );
             
-                int xc = 0, yc = 0;
-                for (Item i : Item.items) {
-                    gc.fillText(i.name, 40 + (xc % 4) * 250, 690 + (yc * 60));
-                    xc++;
-                    if ((xc % 4 == 0)) {
-                        yc++;
-                    }
+            int xc = 0, yc = 0;
+            for (Item i : Item.items) {
+                gc.fillText(i.name, 40 + (xc % 4) * 250, 690 + (yc * 60));
+                xc++;
+                if ((xc % 4 == 0)) {
+                    yc++;
                 }
-                gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
-                if(selected){
-                    Item i = Item.items.get(indexpointer);
-                    i.use();
-                    myturn = false;
-                    if(i.type == ItemType.ITEM){
-                        GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
-                    }else{
-                    e.damage(i.attackpower);
-                    }
-                    if(i.wear == 0){
-                        Item.items.remove(i);
-                    }
-                    selected = false;
+            }
+            gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
+            if(selected){
+                Item i = Item.items.get(indexpointer);
+                i.use();
+                myturn = false;
+                if(i.type == ItemType.ITEM){
+                    GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
+                }else{
+                    s = e.damage(i.attackpower);
                 }
-                //gc.drawImage(GameState.arrow, 40 + (indexpointer % 4) * 250, 700 + (indexpointer / 4) * 60);
-                //gc.fillText("Weapon Wear: " + items.get(indexpointer).wear + "/" + items.get(indexpointer).maxwear, 40, 670);
-                //wearbar.render(gc);
+                if(i.wear == 0){
+                    Item.items.remove(i);
+                }
+                selected = false;
+            }
+            //gc.drawImage(GameState.arrow, 40 + (indexpointer % 4) * 250, 700 + (indexpointer / 4) * 60);
+            //gc.fillText("Weapon Wear: " + items.get(indexpointer).wear + "/" + items.get(indexpointer).maxwear, 40, 670);
+            //wearbar.render(gc);
         }else{
             gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 45));
+            gc.fillRect(0, y-300, 1300,2 ); 
             
-         gc.fillRect(0, y-300, 1300,2 ); 
-            if(once){
-                s = e.attack();
-                once = false;
+            if(e.alive){
+                if(comp){
+                    gc.fillText(s, 30, 800);
+                    if(selected){
+                        selected = false;
+                        comp = false;
+                    }
+                }else{
+                    if(once){
+                        s = e.attack();
+                        once = false;
+                    }else{
+                        gc.fillText(s, 30, 800);
+                        if(selected){
+                            selected = false;
+                            myturn = true;
+                        }
+                    }
+                 }
             }else{
                 gc.fillText(s, 30, 800);
                 if(selected){
                     selected = false;
-                    myturn = true;
-                    
+                    SimonsSQuest2.s.setState("GameState");
                 }
             }
-            
         }
         
         bar.render(gc);

@@ -8,6 +8,8 @@ package simons.squest2.world;
 import javafx.scene.image.Image;
 import simons.squest2.GameVariables;
 import simons.squest2.Item;
+import simons.squest2.SimonsSQuest2;
+import simons.squest2.states.BattleState;
 
 /**
  *
@@ -19,7 +21,7 @@ public class Enemy extends Feature{
     public int health;
     public int maxhealth;
     String drop;
-    boolean alive = true;
+    public boolean alive = true;
     Attack[] attacks = new Attack[4];
     
      public Enemy(int x, int y, String name, Image image, int health){
@@ -37,6 +39,10 @@ public class Enemy extends Feature{
     
 
     public String encounter(){
+        BattleState bs = new BattleState("BattleState");
+        bs.setEnemy(this);
+        SimonsSQuest2.s.addState(bs);
+        SimonsSQuest2.s.setState("BattleState");
         return enemyType + " has been encountered!";
     }
     
@@ -61,19 +67,22 @@ public class Enemy extends Feature{
             GameVariables.playerhealth -= a.damage;
             return (enemyType + " used " + a.name + " to deal " + a.damage + " points of damage!");
         }
-        return (enemyType + " missed!");
+        return (enemyType +  " used " + a.name + " and missed!");
     }
     
     public String damage(int dmg){
         health -= dmg;
         if(health <= 0)
             return onKill();
-        return enemyType + " died!";
+        return enemyType + " took " + dmg + " damage!";
     }
     
     public String onKill(){
         alive = false;
         Item.add(name);
+        if(name == null){
+            return enemyType + " died!";
+        }
         return enemyType + " died and dropped 1 " + name + "!";
     }
 }
