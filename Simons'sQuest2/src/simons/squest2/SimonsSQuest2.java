@@ -113,6 +113,16 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer-=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer-=4;
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        TownState.isbuyingdoritos = !TownState.isbuyingdoritos;
+                    }else if(TownState.isinsecondmenu){
+                        
+                    }else if(TownState.isinthirdmenu){
+                        
+                    }else{
+                    TownState.firstmenupointer--;
+                    }
                 }else{
                     GameVariables.y -= speed;
                     if (!GameState.onMove()) GameVariables.y += speed;
@@ -123,6 +133,16 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer+=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer+=4;
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        TownState.isbuyingdoritos = !TownState.isbuyingdoritos;
+                    }else if(TownState.isinsecondmenu){
+                        
+                    }else if(TownState.isinthirdmenu){
+                        
+                    }else{
+                    TownState.firstmenupointer++;
+                    }
                 }else{
                     GameVariables.y += speed;
                     if (!GameState.onMove()) GameVariables.y -= speed;
@@ -153,6 +173,12 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     s.setState("MenuState");
                 }else if(s.currentState instanceof MenuState){
                     s.setState("GameState");
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu ||TownState.isinsecondmenu || TownState.isinthirdmenu){
+                        TownState.isinfirstmenu = false;
+                        TownState.isinsecondmenu  = false;
+                        TownState.isinthirdmenu = false;
+                    }
                 }else if(s.currentState instanceof TownState){
                     if(TownState.isinfirstmenu){
                         TownState.isinfirstmenu = false;
