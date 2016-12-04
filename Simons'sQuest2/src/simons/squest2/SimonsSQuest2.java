@@ -21,6 +21,7 @@ import simons.squest2.states.BattleState;
 import simons.squest2.states.GameState;
 import simons.squest2.states.MenuState;
 import simons.squest2.states.StateMachine;
+import simons.squest2.states.TownState;
 import simons.squest2.world.Attack;
 import simons.squest2.world.Enemy;
 
@@ -70,6 +71,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         GameState gs = new GameState("GameState");
         s.addState(gs);
         BattleState bs = new BattleState("BattleState");
+        TownState ts = new TownState("TownState");
+        s.addState(ts);
         
         s.addState(bs);
         
@@ -81,7 +84,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
             attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
             e.setAttacks(attacks);
         bs.setEnemy(e);
-        s.setState("GameState");
+        s.setState("TownState");
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
@@ -110,6 +113,17 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer-=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer-=4;
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        if(TownState.isbuyingdoritos == true){
+                            TownState.isbuyingdoritos =false;
+                        }else{
+                            TownState.isbuyingdoritos = true;
+                        }
+                    }else{
+                    TownState.firstmenupointer--;
+                    }
+                    System.out.println(TownState.firstmenupointer);
                 }else{
                     GameVariables.y -= speed;
                     GameState.onMove();
@@ -120,6 +134,17 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer+=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer+=4;
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        if(TownState.isbuyingdoritos == true){
+                            TownState.isbuyingdoritos =false;
+                        }else{
+                            TownState.isbuyingdoritos = true;
+                        }
+                    }else{
+                    TownState.firstmenupointer++;
+                    }
+                    System.out.println(TownState.firstmenupointer);
                 }else{
                     GameVariables.y += speed;
                     GameState.onMove();
@@ -151,11 +176,23 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     s.setState("MenuState");
                 }else if(s.currentState instanceof MenuState){
                     s.setState("GameState");
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        TownState.isinfirstmenu = false;
+                    }
                 }
                 break;
             case ENTER:
                 if(s.currentState instanceof BattleState){
                     BattleState.selected = true;
+                }else if(s.currentState instanceof TownState){
+                    if(TownState.isinfirstmenu){
+                        
+                    }else{
+                        if(TownState.firstmenupointer == 0){
+                        TownState.isinfirstmenu = true;
+                                }
+                    }
                 }
             break;
             case SPACE:
