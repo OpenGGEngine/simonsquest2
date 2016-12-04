@@ -81,7 +81,7 @@ public class TownState extends State {
 
             }
         }else if(isinthirdmenu){
-            gc.fillText("Item Wear: " + Item.items.get(pointer).wear + "/" + Item.items.get(pointer).wearmax, 20, 180);
+            gc.fillText("Item Wear: " + Item.items.get(secondmenupointer).wear + "/" + Item.items.get(secondmenupointer).wearmax, 20, 180);
             
             gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 30));
             int xc = 0, yc = 0;
@@ -113,8 +113,8 @@ public class TownState extends State {
             secondmenupointer = Item.items.size() - 1;
         }
         if(isinthirdmenu){
-            wearbar.setMax(Item.items.get(thirdpointer).wearmax);
-            wearbar.setValue(Item.items.get(thirdpointer).wear);
+            wearbar.setMax(Item.items.get(secondmenupointer).wearmax);
+            wearbar.setValue(Item.items.get(secondmenupointer).wear);
         }
     }
 
