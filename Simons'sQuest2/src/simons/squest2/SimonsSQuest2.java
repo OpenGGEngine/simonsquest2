@@ -49,6 +49,13 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
     public void start(Stage primaryStage) throws Exception {
         Item.add("Glock-18");
         Item.add("Mountain Dew");
+        Item.add("Glock-18");
+        Item.add("Mountain Dew");
+        Item.add("Glock-18");
+        Item.add("Mountain Dew");
+        Item.add("Glock-18");
+        Item.add("Mountain Dew");
+        
         
         
         primaryStage.initStyle(StageStyle.DECORATED);
@@ -69,7 +76,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         s.addState(gs);
         TownState ts = new TownState("TownState");
         s.addState(ts);
-        s.setState("GameState");
+        s.setState("TownState");
 
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
@@ -139,6 +146,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer--;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer--;
+                }else if(s.currentState instanceof TownState){
+                    TownState.secondmenupointer--;
                 }else{
                     GameVariables.x -= speed;
                     if (!GameState.onMove()) GameVariables.x += speed;
@@ -149,6 +158,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer++;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer++;
+                }else if(s.currentState instanceof TownState){
+                    TownState.secondmenupointer++;
                 }else{
                     GameVariables.x += speed;
                     if (!GameState.onMove()) GameVariables.x -= speed;
@@ -176,10 +187,26 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     BattleState.selected = true;
                 }else if(s.currentState instanceof TownState){
                     if(TownState.isinfirstmenu){
-                        
+                        if(TownState.isbuyingdoritos){
+                            if(GameVariables.money >= 10 ){
+                                GameVariables.money -= 10;
+                                Item.add("Doritos");
+                            }
+                        }else{
+                            if(GameVariables.money >= 30){
+                                GameVariables.money -= 30;
+                                Item.add("Medkit");
+                            }
+                        }
                     }else{
                         if(TownState.firstmenupointer == 0){
                         TownState.isinfirstmenu = true;
+                                }
+                        if(TownState.firstmenupointer == 1){
+                        TownState.isinsecondmenu = true;
+                                }
+                        if(TownState.firstmenupointer == 2){
+                        TownState.isinthirdmenu = true;
                                 }
                     }
                 }
