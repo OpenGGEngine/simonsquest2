@@ -20,11 +20,7 @@ public class GameVariables {
     
     public static int attackpower;
     
-    public static int defense;
-    
-    public static int evasion;
-    
-    public static int accuracy;
+    public static int bossamount = 0;
     
     public static int x = 0,y= 0;
     

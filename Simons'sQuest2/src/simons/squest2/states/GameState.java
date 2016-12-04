@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
 import simons.squest2.GlobalUtil;
+import simons.squest2.SimonsSQuest2;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
 import simons.squest2.world.Enemy;
@@ -127,15 +128,19 @@ public class GameState extends State {
 
     @Override
     public void update() {
+         
+    }
+    
+    public static boolean onMove(){
         if(w.getTile(GlobalUtil.getPos()).f != null){
             if(w.getTile(GlobalUtil.getPos()).f instanceof Enemy){
                 ((Enemy) w.getTile(GlobalUtil.getPos()).f).encounter();
                 w.getTile((GlobalUtil.getPos())).f = null;
+                GameVariables.bossamount++;
+            }else if(w.getTile(GlobalUtil.getPos()).f instanceof Town){
+                SimonsSQuest2.s.setState("TownState");
             }
-        }    
-    }
-    
-    public static boolean onMove(){
+        }   
         if(w.getTile((GlobalUtil.getPos())).type == Tile.FOREST){
             if(Math.random() < 0.01){
                 Enemy e = RandomEnemyList.getEnemy();
@@ -150,7 +155,6 @@ public class GameState extends State {
                     e.drop = "Sword";
                 }
                 e.encounter();
-                return true;
             }
         }else if(w.getTile(GlobalUtil.getPos()).type == Tile.MOUNTAIN && w.getTile(GlobalUtil.getPos()).type == Tile.WATER){
             return false;

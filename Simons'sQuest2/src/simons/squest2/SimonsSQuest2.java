@@ -47,10 +47,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Item.add("Airhorn");
-        Item.add("Airhorn");
-        Item.add("Airhorn");
-        Item.add("Airhorn");Item.add("Airhorn");
+        Item.add("Glock-18");
         Item.add("Mountain Dew");
         
         
@@ -70,21 +67,10 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
         s.addState(ms);
         GameState gs = new GameState("GameState");
         s.addState(gs);
-        BattleState bs = new BattleState("BattleState");
         TownState ts = new TownState("TownState");
         s.addState(ts);
-        
-        s.addState(bs);
-        
-        Enemy e = new Enemy(1, 1, "Donald Trump", new Image(new File("C:/res/trump.png").toURI().toString()), 125);
-            Attack[] attacks = new Attack[4];
-            attacks[0] = new Attack("Twitter War", 20, false, 0.6);//low prob
-            attacks[1] = new Attack("Lie", 15, false, 0.8);
-            attacks[2] = new Attack("Build a Wall", 20, true, 1);//heal
-            attacks[3] = new Attack("Punch with small hands", 10, false, 0.95);//core attack
-            e.setAttacks(attacks);
-        bs.setEnemy(e);
-        s.setState("TownState");
+        s.setState("GameState");
+
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
         new AnimationTimer() {
