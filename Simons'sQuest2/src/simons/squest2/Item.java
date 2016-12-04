@@ -45,10 +45,19 @@ public class Item implements Cloneable{
         this.prob = prob;
         this.price = price;
     }
+    public Item(Item s){
+        this.name = s.name;
+        this.attackpower = s.attackpower;
+        this.wear = s.wearmax;
+        this.type = s.type;
+        this.wearmax = s.wearmax;
+        this.prob = s.prob;
+        this.price = s.price;
+    }
     private static Item getTemplate(String item) {
         for (Item i: itemLookup) {
             if (i.name.equals(item))
-                return i;
+                return new Item(i);
         }
         return null;
     }
