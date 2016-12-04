@@ -74,6 +74,7 @@ public class MenuState extends State {
               if(i.type == ItemType.ITEM){
                   i.use();
                   GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
+                  i.wear--;
                   if(i.wear == 0){
                       Item.items.remove(i);
                   }

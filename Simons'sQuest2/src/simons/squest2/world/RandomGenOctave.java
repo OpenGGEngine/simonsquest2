@@ -83,8 +83,7 @@ public class RandomGenOctave {
     
     public double noise(double xin, double yin) {
         double n0, n1, n2; // Noise contributions from the three corners
-        // Skew the input space to determine which simplex cell we're in
-        double s = (xin+yin)*F2; // Hairy factor for 2D
+        double s = (xin+yin)*F2; 
         int i = fastfloor(xin+s);
         int j = fastfloor(yin+s);
         double t = (i+j)*G2;
@@ -94,7 +93,7 @@ public class RandomGenOctave {
         double y0 = yin-Y0;
         // For the 2D case, the simplex shape is an equilateral triangle.
         // Determine which simplex we are in.
-        int i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+        int i1, j1; 
         if(x0>y0) {i1=1; j1=0;} // lower triangle, XY order: (0,0)->(1,0)->(1,1)
         else {i1=0; j1=1;}      // upper triangle, YX order: (0,0)->(0,1)->(1,1)
         // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
@@ -129,8 +128,7 @@ public class RandomGenOctave {
           t2 *= t2;
           n2 = t2 * t2 * dot(grad3[gi2], x2, y2);
     }
-    // Add contributions from each corner to get the final noise value.
-    // The result is scaled to return values in the interval [-1,1].
+
     return 70.0 * (n0 + n1 + n2);
     }
 

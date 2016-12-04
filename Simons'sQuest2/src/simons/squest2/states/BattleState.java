@@ -36,6 +36,7 @@ public class BattleState extends State{
     final Image battlebackground = new Image(new File("C:/res/battlebackground.jpg").toURI().toString());
     final Image pointeri = new Image(new File("C:/res/arrow.png").toURI().toString());
     final Image simon = new Image(new File("C:/res/simon.png").toURI().toString());
+    final Image simondab = new Image(new File("C:/res/dab.png").toURI().toString());
     List<String> log = new LinkedList<>();
     Bar bar = new Bar(Color.GREEN, 100, 100, 240, 570, 650, 20);
    // Bar wearbar = new Bar(Color.AQUA, 100, 100, 315, 520, 650, 20);
@@ -43,6 +44,7 @@ public class BattleState extends State{
     boolean once = true;
     public static boolean selected = false;
     String s =" default";
+    boolean flip = false;
     public BattleState(String name) {
         super(name);
     }
@@ -90,6 +92,8 @@ public class BattleState extends State{
                 myturn = false;
                 if(i.type == ItemType.ITEM){
                     GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
+                    i.wear--;
+                    s = "Healed for " +  i.attackpower + " points!";
                 }else{
                     s = e.damage(i.attackpower);
                     i.wear--;
@@ -129,6 +133,11 @@ public class BattleState extends State{
                  }
             }else{
                 gc.fillText(s, 30, 800);
+                if(flip){
+                    gc.drawImage(simondab, 300,0,0,y-400);
+                    flip = !flip;
+                }
+                
                 if(selected){
                     selected = false;
                     SimonsSQuest2.s.setState("GameState");

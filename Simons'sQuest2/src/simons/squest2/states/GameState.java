@@ -12,7 +12,9 @@ import javafx.scene.paint.Color;
 import simons.squest2.GameVariables;
 import simons.squest2.GlobalInfo;
 import simons.squest2.GlobalUtil;
+import simons.squest2.Item;
 import simons.squest2.SimonsSQuest2;
+import simons.squest2.world.Attack;
 import simons.squest2.world.Town;
 import simons.squest2.world.World;
 import simons.squest2.world.Enemy;
@@ -128,10 +130,27 @@ public class GameState extends State {
 
     @Override
     public void update() {
-         
+        if(GameVariables.bossamount == 4){
+            Item.add("Negev");
+        }
+        if(GameVariables.bossamount == 5){
+            Enemy boss = new Enemy(1, 1, "Ethan Mak", new Image(new File("C:/res/emak.png").toURI().toString()), 300);
+            Attack[] attacks = new Attack[4];
+            attacks[0] = new Attack("Actually develop", 60, true, 0.6);//low prob
+            attacks[1] = new Attack("Phase through terrain", 40, false, 0.8);//strong attack
+            attacks[2] = new Attack("Lose Collision", 30, true, 1);//heal
+            attacks[3] = new Attack("Teleport", 25, false, 0.95);//core attack
+            boss.setAttacks(attacks);
+            BattleState b = new BattleState("BattleState");
+            b.setEnemy(boss);
+            Item.add("Airhorn");
+            boss.encounter();
+            
+         }
     }
     
     public static boolean onMove(){
+        //GameVariables.bossamount = 5;
         if(w.getTile(GlobalUtil.getPos()).f != null){
             if(w.getTile(GlobalUtil.getPos()).f instanceof Enemy){
                 ((Enemy) w.getTile(GlobalUtil.getPos()).f).encounter();
@@ -148,7 +167,7 @@ public class GameState extends State {
                 if(d < 0.2){
                     e.drop = "Glock-18";;
                 }else if(d < 0.3){
-                    e.drop = "dagger";
+                    e.drop = "Dagger";
                 }else if(d < 0.5){
                     e.drop = "Mountain Dew";
                 }else if(d < 0.6){
@@ -156,7 +175,7 @@ public class GameState extends State {
                 }
                 e.encounter();
             }
-        }else if(w.getTile(GlobalUtil.getPos()).type == Tile.MOUNTAIN && w.getTile(GlobalUtil.getPos()).type == Tile.WATER){
+        }else if(w.getTile(GlobalUtil.getPos()).type == Tile.MOUNTAIN || w.getTile(GlobalUtil.getPos()).type == Tile.WATER){
             return false;
         }
         return true;

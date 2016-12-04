@@ -53,15 +53,17 @@ public class Enemy extends Feature implements Cloneable{
         double rand = r.nextDouble();
         Attack a = attacks[(int) (Math.random() * attacks.length)];
         
+        if(Math.random() > a.chanceToHit){
+            return (enemyType +  " used " + a.name + " and missed!");
+        }
+        
         if(a.heal){
             health = (int)Math.min((health + a.damage), maxhealth);
             return (enemyType + " used " + a.name + " to heal " + a.damage + " health points!");
         }
-        if(Math.random() < a.chanceToHit){
-            GameVariables.playerhealth -= a.damage;
-            return (enemyType + " used " + a.name + " to deal " + a.damage + " points of damage!");
-        }
-        return (enemyType +  " used " + a.name + " and missed!");
+        GameVariables.playerhealth -= a.damage;
+        return (enemyType + " used " + a.name + " to deal " + a.damage + " points of damage!");
+        
     }
     
     public String damage(int dmg){
@@ -73,6 +75,8 @@ public class Enemy extends Feature implements Cloneable{
     
     public String onKill(){
         alive = false;
+        GameVariables.playermaxhealth += maxhealth/15;
+        GameVariables.playerhealth += maxhealth/15;
         Item.add(drop);
         System.out.println(drop);
         if(drop == null){

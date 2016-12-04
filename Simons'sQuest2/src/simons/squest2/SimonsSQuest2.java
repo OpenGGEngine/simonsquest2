@@ -49,11 +49,6 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
     public void start(Stage primaryStage) throws Exception {
         Item.add("Glock-18");
         Item.add("Mountain Dew");
-        Item.add("Glock-18");
-        Item.add("Mountain Dew");
-        Item.add("Glock-18");
-        Item.add("Mountain Dew");
-        Item.add("Glock-18");
         Item.add("Mountain Dew");
 
         primaryStage.initStyle(StageStyle.DECORATED);
@@ -63,6 +58,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
 
         // gc.fillRect(75,75,100,100);
         root.getChildren().add(screen);
+        primaryStage.setTitle("Simon's Quest 2");
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -74,7 +70,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
         s.addState(gs);
         TownState ts = new TownState("TownState");
         s.addState(ts);
-        s.setState("TownState");
+        s.setState("GameState");
 
         scene.setOnKeyPressed(KeyboardHandler.getHandler());
         KeyboardHandler.subscribe(this);
@@ -181,6 +177,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
                         TownState.isinfirstmenu = false;
                         TownState.isinsecondmenu = false;
                         TownState.isinthirdmenu = false;
+                    }else{
+                        s.setState("GameState");
                     }
                 } else if (s.currentState instanceof TownState) {
                     if (TownState.isinfirstmenu) {
@@ -237,6 +235,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
                 if (s.currentState instanceof MenuState) {
                     MenuState.selected = true;
                 }
+                break;
+            case L:
+                GameVariables.bossamount = 5;
                 break;
 
         }
