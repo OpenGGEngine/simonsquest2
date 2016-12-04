@@ -63,8 +63,8 @@ public class BattleState extends State{
         gc.fillRect(0, y-400, x, 400);
         gc.setFill(Color.BLACK);
         gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 25));
-        gc.fillText("Health " + GameVariables.playerhealth + "/" + GameVariables.playermaxhealth, 20, y-360);
-        gc.fillText("Enemy Health " + e.health + "/" + enemybar.max, 20, y-320);
+        gc.fillText("Health " + Math.max(GameVariables.playerhealth,0) + "/" + GameVariables.playermaxhealth, 20, y-360);
+        gc.fillText("Enemy Health " + Math.max(0,e.health) + "/" + enemybar.max, 20, y-320);
            
         if(myturn){
             
@@ -80,7 +80,8 @@ public class BattleState extends State{
                 }
             }
             gc.drawImage(pointeri, 10 + (indexpointer % 4) * 250, 670 + (indexpointer / 4) * 60);
-            gc.fillText("Wear: " + Item.items.get(indexpointer).wear + "/" + Item.items.get(indexpointer).wearmax, 1100, y-350);
+            int wear = Item.items.get(indexpointer).wear;
+            gc.fillText("Wear: " + (wear < 0 ? "∞": Integer.toString(wear)+ "/" + Item.items.get(indexpointer).wearmax) , 1100, y-350);
             if(Item.items.get(indexpointer).type == ItemType.ITEM){
                 gc.fillText("Health Healed: " + Item.items.get(indexpointer).attackpower, 1050, y-300);
             }else{
