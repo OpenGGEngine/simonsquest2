@@ -22,26 +22,28 @@ public class Item implements Cloneable{
     public String name;
     public int attackpower;
     public ItemType type;
+    public int price;
     static{
-        itemLookup.add(new Item("Airhorn",100,ItemType.WEAPON,-1,100));
-        itemLookup.add(new Item("Negev",50,ItemType.WEAPON,55,60));
-        itemLookup.add(new Item("Glock-18",10,ItemType.WEAPON,20,85));
-        itemLookup.add(new Item("Mace",25,ItemType.WEAPON,40,72));
-        itemLookup.add(new Item("Bow and Arrow",16,ItemType.WEAPON,30,50));
-        itemLookup.add(new Item("Sword",20,ItemType.WEAPON,40,80));
-        itemLookup.add(new Item("Dagger",15,ItemType.WEAPON,40,60));
-        itemLookup.add(new Item("Mountain Dew",15,ItemType.ITEM,1,100));
-        itemLookup.add(new Item("Doritos",30,ItemType.ITEM,1,100));
-        itemLookup.add(new Item("Medkit",50,ItemType.ITEM,1,100));
+        itemLookup.add(new Item("Airhorn",100,ItemType.WEAPON,-1,100, 1000));
+        itemLookup.add(new Item("Negev",50,ItemType.WEAPON,55,60, 500));
+        itemLookup.add(new Item("Glock-18",10,ItemType.WEAPON,20,85, 12));
+        itemLookup.add(new Item("Mace",25,ItemType.WEAPON,40,72, 25));
+        itemLookup.add(new Item("Bow and Arrow",16,ItemType.WEAPON,30,50,28));
+        itemLookup.add(new Item("Sword",20,ItemType.WEAPON,40,80, 22));
+        itemLookup.add(new Item("Dagger",15,ItemType.WEAPON,40,60, 28));
+        itemLookup.add(new Item("Mountain Dew",15,ItemType.ITEM,1,100, 10));
+        itemLookup.add(new Item("Doritos",30,ItemType.ITEM,1,100, 50));
+        itemLookup.add(new Item("Medkit",50,ItemType.ITEM,1,100, 100));
         
     }
-    public Item(String name, int attackpower, ItemType type,int wearmax,int prob) {
+    public Item(String name, int attackpower, ItemType type,int wearmax,int prob, int price) {
         this.name = name;
         this.attackpower = attackpower;
         this.wear = wearmax;
         this.type = type;
         this.wearmax = wearmax;
         this.prob = prob;
+        this.price = price;
     }
     private static Item getTemplate(String item) {
         for (Item i: itemLookup) {
