@@ -20,7 +20,6 @@ import simons.squest2.GlobalInfo;
 import simons.squest2.Item;
 import simons.squest2.Item.ItemType;
 import simons.squest2.SimonsSQuest2;
-import static simons.squest2.states.MenuState.pointer;
 import simons.squest2.world.Enemy;
 
 /**
@@ -93,6 +92,7 @@ public class BattleState extends State{
                     GameVariables.playerhealth = Math.min(GameVariables.playermaxhealth, GameVariables.playerhealth + i.attackpower);
                 }else{
                     s = e.damage(i.attackpower);
+                    i.wear--;
                 }
                 if(i.wear == 0){
                     Item.items.remove(i);
@@ -122,6 +122,8 @@ public class BattleState extends State{
                         if(selected){
                             selected = false;
                             myturn = true;
+                            once = true;
+                            comp = true;
                         }
                     }
                  }

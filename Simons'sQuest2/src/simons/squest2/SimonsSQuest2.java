@@ -113,20 +113,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer-=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer-=4;
-                }else if(s.currentState instanceof TownState){
-                    if(TownState.isinfirstmenu){
-                        if(TownState.isbuyingdoritos == true){
-                            TownState.isbuyingdoritos =false;
-                        }else{
-                            TownState.isbuyingdoritos = true;
-                        }
-                    }else{
-                    TownState.firstmenupointer--;
-                    }
-                    System.out.println(TownState.firstmenupointer);
                 }else{
                     GameVariables.y -= speed;
-                    GameState.onMove();
+                    if (!GameState.onMove()) GameVariables.y += speed;
                 }
                 break;
             case S:
@@ -134,20 +123,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     MenuState.pointer+=3;
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer+=4;
-                }else if(s.currentState instanceof TownState){
-                    if(TownState.isinfirstmenu){
-                        if(TownState.isbuyingdoritos == true){
-                            TownState.isbuyingdoritos =false;
-                        }else{
-                            TownState.isbuyingdoritos = true;
-                        }
-                    }else{
-                    TownState.firstmenupointer++;
-                    }
-                    System.out.println(TownState.firstmenupointer);
                 }else{
                     GameVariables.y += speed;
-                    GameState.onMove();
+                    if (!GameState.onMove()) GameVariables.y -= speed;
                 }
                 break;
             case A:
@@ -156,9 +134,8 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                 }else if(s.currentState instanceof BattleState){
                     BattleState.indexpointer--;
                 }else{
-                    
                     GameVariables.x -= speed;
-                    GameState.onMove();
+                    if (!GameState.onMove()) GameVariables.x += speed;
                 }
                 break;
             case D:
@@ -168,7 +145,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener{
                     BattleState.indexpointer++;
                 }else{
                     GameVariables.x += speed;
-                    GameState.onMove();
+                    if (!GameState.onMove()) GameVariables.x -= speed;
                 }
                 break;
             case ESCAPE:

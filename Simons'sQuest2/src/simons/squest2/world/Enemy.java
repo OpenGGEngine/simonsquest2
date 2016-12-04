@@ -5,6 +5,7 @@
  */
 package simons.squest2.world;
 
+import java.util.Random;
 import javafx.scene.image.Image;
 import simons.squest2.GameVariables;
 import simons.squest2.Item;
@@ -20,11 +21,13 @@ public class Enemy extends Feature implements Cloneable{
     public Image image;
     public int health;
     public int maxhealth;
-    String drop;
+    public String drop;
     public boolean alive = true;
     Attack[] attacks = new Attack[4];
+    Random r;
     
-     public Enemy(int x, int y, String name, Image image, int health){
+    public Enemy(int x, int y, String name, Image image, int health){
+        r = new Random();
         this.x = x;
         this.y = y;
         this.enemyType = name;
@@ -47,7 +50,7 @@ public class Enemy extends Feature implements Cloneable{
     }
     
     public String attack(){
-        double rand = Math.random();
+        double rand = r.nextDouble();
         Attack a = attacks[(int) (Math.random() * attacks.length)];
         
         if(a.heal){
@@ -70,11 +73,12 @@ public class Enemy extends Feature implements Cloneable{
     
     public String onKill(){
         alive = false;
-        Item.add(name);
-        if(name == null){
+        Item.add(drop);
+        System.out.println(drop);
+        if(drop == null){
             return enemyType + " died!";
         }
-        return enemyType + " died and dropped 1 " + name + "!";
+        return enemyType + " died and dropped 1 " + drop + "!";
     }
     
     @Override

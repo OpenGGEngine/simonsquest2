@@ -56,7 +56,6 @@ public class GameState extends State {
             screenY = GameVariables.y - camY;
         }
 
-   
         int xa = camX;
         int ya = camY;
 
@@ -131,16 +130,31 @@ public class GameState extends State {
         if(w.getTile(GlobalUtil.getPos()).f != null){
             if(w.getTile(GlobalUtil.getPos()).f instanceof Enemy){
                 ((Enemy) w.getTile(GlobalUtil.getPos()).f).encounter();
+                w.getTile((GlobalUtil.getPos())).f = null;
             }
         }    
     }
     
-    public static void onMove(){
+    public static boolean onMove(){
         if(w.getTile((GlobalUtil.getPos())).type == Tile.FOREST){
             if(Math.random() < 0.01){
                 Enemy e = RandomEnemyList.getEnemy();
+                double d = Math.random();
+                if(d < 0.2){
+                    e.drop = "Glock-18";;
+                }else if(d < 0.3){
+                    e.drop = "dagger";
+                }else if(d < 0.5){
+                    e.drop = "Mountain Dew";
+                }else if(d < 0.6){
+                    e.drop = "Sword";
+                }
                 e.encounter();
+                return true;
             }
+        }else if(w.getTile(GlobalUtil.getPos()).type == Tile.MOUNTAIN && w.getTile(GlobalUtil.getPos()).type == Tile.WATER){
+            return false;
         }
+        return true;
     }
 }

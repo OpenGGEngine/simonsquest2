@@ -6,11 +6,7 @@
 package simons.squest2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +31,8 @@ public class Item implements Cloneable{
         itemLookup.add(new Item("Sword",20,ItemType.WEAPON,40,80));
         itemLookup.add(new Item("Dagger",15,ItemType.WEAPON,40,60));
         itemLookup.add(new Item("Mountain Dew",15,ItemType.ITEM,1,100));
-        itemLookup.add(new Item("Doritos",35,ItemType.ITEM,1,100));
-        itemLookup.add(new Item("Medkit",15,ItemType.ITEM,1,100));
+        itemLookup.add(new Item("Doritos",30,ItemType.ITEM,1,100));
+        itemLookup.add(new Item("Medkit",50,ItemType.ITEM,1,100));
         
     }
     public Item(String name, int attackpower, ItemType type,int wearmax,int prob) {

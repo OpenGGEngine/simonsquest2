@@ -27,7 +27,7 @@ public class RandomEnemyList {
         e.setAttacks(a);
         enemies.add(e);
         
-        Enemy e2 = new Enemy(2, 2, "Counter Terrorist", new Image(new File("C:/res/sneaky beaky cts.png").toURI().toString()), 30);
+        Enemy e2 = new Enemy(2, 2, "Counter Terrorist", new Image(new File("C:/res/ct.png").toURI().toString()), 30);
         Attack[] a2 = new Attack[3];
         a2[0] = new Attack("Push A", 8, false, 0.95);
         a2[1] = new Attack("P90 Rush", 15, false, 0.5);
@@ -45,7 +45,7 @@ public class RandomEnemyList {
         Enemy e4 = new Enemy(2, 2, "Justin Beaver", new Image(new File("C:/res/justinbeaver.png").toURI().toString()), 40);
         Attack[] a4 = new Attack[2];
         a4[0] = new Attack("Sing", 10, false, 0.9);
-        a4[1] = new Attack("Build Sniper Tower", 10, true, 1);
+        a4[1] = new Attack("Call Fans", 10, true, 1);
         e4.setAttacks(a4);
         enemies.add(e4);
     }
