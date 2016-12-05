@@ -104,9 +104,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
                     if (TownState.isinfirstmenu) {
                         TownState.isbuyingdoritos = !TownState.isbuyingdoritos;
                     } else if (TownState.isinsecondmenu) {
-
+                        TownState.secondmenupointer+=3;
                     } else if (TownState.isinthirdmenu) {
-
+                        TownState.secondmenupointer+=3;
                     } else {
                         TownState.firstmenupointer--;
                     }
@@ -126,9 +126,9 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
                     if (TownState.isinfirstmenu) {
                         TownState.isbuyingdoritos = !TownState.isbuyingdoritos;
                     } else if (TownState.isinsecondmenu) {
-
+                        TownState.secondmenupointer-=3;
                     } else if (TownState.isinthirdmenu) {
-
+                        TownState.secondmenupointer-=3;
                     } else {
                         TownState.firstmenupointer++;
                     }
@@ -221,7 +221,7 @@ public class SimonsSQuest2 extends Application implements KeyboardListener {
                             TownState.isinfirstmenu = true;
                         }
                         if (TownState.firstmenupointer == 1) {
-                            if(Item.items.size() != 0){
+                            if(!Item.items.isEmpty()){
                             TownState.isinsecondmenu = true;
                             }
                         }
