@@ -89,21 +89,17 @@ public class RandomGenOctave {
         double t = (i+j)*G2;
         double X0 = i-t; // Unskew the cell origin back to (x,y) space
         double Y0 = j-t;
-        double x0 = xin-X0; // The x,y distances from the cell origin
+        double x0 = xin-X0; 
         double y0 = yin-Y0;
-        // For the 2D case, the simplex shape is an equilateral triangle.
-        // Determine which simplex we are in.
+        
         int i1, j1; 
-        if(x0>y0) {i1=1; j1=0;} // lower triangle, XY order: (0,0)->(1,0)->(1,1)
-        else {i1=0; j1=1;}      // upper triangle, YX order: (0,0)->(0,1)->(1,1)
-        // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
-        // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
-        // c = (3-sqrt(3))/6
+        if(x0>y0) {i1=1; j1=0;} 
+        else {i1=0; j1=1;}     
         double x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
         double y1 = y0 - j1 + G2;
         double x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
         double y2 = y0 - 1.0 + 2.0 * G2;
-        // Work out the hashed gradient indices of the three simplex corners
+
         int ii = i & 255;
         int jj = j & 255;
         int gi0 = permMod12[ii+perm[jj]];

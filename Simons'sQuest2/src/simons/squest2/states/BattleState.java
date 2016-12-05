@@ -44,7 +44,7 @@ public class BattleState extends State{
     boolean once = true;
     public static boolean selected = false;
     String s =" default";
-    boolean flip = false;
+    
     public BattleState(String name) {
         super(name);
     }
@@ -57,7 +57,7 @@ public class BattleState extends State{
         int x = GlobalInfo.xres;
         int y = GlobalInfo.yres;
         gc.drawImage(battlebackground, 0, 0,x,y-400);
-        gc.drawImage(simon, 0,0,300,y-400);
+        
         gc.drawImage(e.image, 600,50,y-500,y-500);
         gc.setFill(Color.SKYBLUE);
         gc.fillRect(0, y-400, x, 400);
@@ -67,7 +67,7 @@ public class BattleState extends State{
         gc.fillText("Enemy Health " + e.health + "/" + enemybar.max, 20, y-320);
            
         if(myturn){
-            
+            gc.drawImage(simon, 0,0,300,y-400);
             gc.fillRect(0, y-300, 1000,2 );
             gc.fillRect(1000, y-400, 2,400 );
             
@@ -110,7 +110,8 @@ public class BattleState extends State{
             gc.setFont(new javafx.scene.text.Font("Comic Sans MS", 45));
             gc.fillRect(0, y-300, 1300,2 ); 
             
-            if(e.alive){
+            if(e.alive && GameVariables.playerhealth > 0){
+                gc.drawImage(simon, 0,0,300,y-400);
                 if(comp){
                     gc.fillText(s, 30, 800);
                     if(selected){
@@ -131,17 +132,16 @@ public class BattleState extends State{
                         }
                     }
                  }
-            }else{
+            }else if(!e.alive){
                 gc.fillText(s, 30, 800);
-                if(flip){
-                    gc.drawImage(simondab, 300,0,0,y-400);
-                    flip = !flip;
-                }
-                
+                gc.drawImage(simondab, 0,0,300,y-400);
                 if(selected){
                     selected = false;
                     SimonsSQuest2.s.setState("GameState");
                 }
+            }else{
+                s = "You died!";
+                gc.fillText(s, 30, 800);
             }
         }
         
